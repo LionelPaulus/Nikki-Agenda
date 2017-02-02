@@ -68,3 +68,12 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+# Google API Configuration
+happy_r_google_api:
+  application_name: Kawaigenda
+  oauth2_client_id: "202000157735-71bjhf0d0bprglcalbspgo7r5b1quq9i.apps.googleusercontent.com"
+  oauth2_client_secret: "PVphifQxIoRr0LD4QeyIgJba"
+  oauth2_redirect_uri: "http://127.0.0.1:8000/success"
+  developer_key: "AIzaSyCze5cMB9oyjB5dKHkZVqeqVaGKLfNXIz8"
+  site_name: mysite.com
