@@ -38,7 +38,6 @@ class GoogleOAuthController extends Controller
             $client->authenticate($code);
 
             $accessToken = $client->getGoogleClient()->getAccessToken();
-
             // TODO - Store the token, etc...
         } else {
             $error = $request->query->get('error');
