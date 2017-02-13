@@ -4,14 +4,14 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 class GoogleOAuthController extends Controller
 {
 
     private $accessScope = [
       \Google_Service_Calendar::CALENDAR,
-      \Google_Service_Gmail::GMAIL_READONLY,
-      \Google_Service_People::CONTACTS_READONLY,
+      \Google_Service_People::CONTACTS_READONLY
     ];
     /**
      * @Route("/oauth/google/auth")
@@ -22,6 +22,12 @@ class GoogleOAuthController extends Controller
 
         // Determine the level of access your application needs
         $client->getGoogleClient()->setScopes($this->accessScope);
+
+        // Request access to basic informations
+        $client->getGoogleClient()->addScope('https://www.googleapis.com/auth/userinfo.email');
+
+        // Request access to offline access
+        $client->getGoogleClient()->setAccessType('offline');
 
         // Send the user to complete their part of the OAuth
         return $this->redirect($client->createAuthUrl());
