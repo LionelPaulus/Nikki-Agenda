@@ -72,8 +72,8 @@ swiftmailer:
 # Google API Configuration
 happy_r_google_api:
   application_name: Kawaigenda
-  oauth2_client_id: "202000157735-71bjhf0d0bprglcalbspgo7r5b1quq9i.apps.googleusercontent.com"
-  oauth2_client_secret: "PVphifQxIoRr0LD4QeyIgJba"
-  oauth2_redirect_uri: "http://127.0.0.1:8000/success"
-  developer_key: "AIzaSyCze5cMB9oyjB5dKHkZVqeqVaGKLfNXIz8"
+  oauth2_client_id: "570072354115-udf1k3ug3e5ja78srsbh3bt5050g2pah.apps.googleusercontent.com"
+  oauth2_client_secret: "7EVvGiI9usobfM73f3lnbHkn"
+  oauth2_redirect_uri: "http://127.0.0.1:8000/oauth/google/redirect"
+  developer_key: "AIzaSyD6DNKdORpPw9x_4JmkHQJIGtSx8_pjpfc"
   site_name: mysite.com
