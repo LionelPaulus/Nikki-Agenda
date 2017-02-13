@@ -9,7 +9,9 @@ class GoogleOAuthController extends Controller
 {
 
     private $accessScope = [
-      \Google_Service_Calendar::CALENDAR
+      \Google_Service_Calendar::CALENDAR,
+      \Google_Service_Gmail::GMAIL_READONLY,
+      \Google_Service_People::CONTACTS_READONLY,
     ];
     /**
      * @Route("/oauth/google/auth")
