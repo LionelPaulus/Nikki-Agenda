@@ -2,9 +2,11 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Session\Session;
 
 class GoogleOAuthController extends Controller
 {
@@ -56,9 +58,28 @@ class GoogleOAuthController extends Controller
             $google_oauth = new \Google_Service_Oauth2($client->getGoogleClient());
             $userinfo = $google_oauth->userinfo->get();
 
+
+            $UserController = $this->get('UserController');
+            $UserController->userLogin(
+                $accessToken['access_token'],
+                $userinfo->givenName,
+                $userinfo->familyName,
+                $userinfo->picture,
+                $userinfo->email
+            );
+
+            $session = $request->getSession();
+            $session->start();
+
+            $session->set('userGoogleAuth', $accessToken['access_token']);
+            $session->set('userFirstName', $userinfo->givenName);
+            $session->set('userLastName', $userinfo->familyName);
+            $session->set('userPicture', $userinfo->picture);
+            $session->set('userEmail', $userinfo->email);
             echo '<pre>';
-            var_dump($userinfo);
+            var_dump($session->get('userEmail'));
             echo '</pre>';
+
             die();
 
             $calendar = new \Google_Service_Calendar($client->getGoogleClient()); // Works

@@ -24,23 +24,30 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="google_auth", type="string", length=255)
+     * @ORM\Column(name="google_auth", type="string", length=255, nullable=true)
      */
     private $googleAuth;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="first_name", type="string", length=255)
+     * @ORM\Column(name="first_name", type="string", length=255, nullable=true)
      */
     private $firstName;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="last_name", type="string", length=255)
+     * @ORM\Column(name="last_name", type="string", length=255, nullable=true)
      */
     private $lastName;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="picture", type="string", length=255, nullable=true)
+     */
+    private $picture;
 
     /**
      * @var string
@@ -48,6 +55,13 @@ class User
      * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     private $email;
+
+    /**
+     * @var bool
+     *
+     * @ORM\Column(name="invited_user", type="boolean", options={"default":false})
+     */
+    private $invitedUser;
 
 
     /**
@@ -133,6 +147,30 @@ class User
     }
 
     /**
+     * Set picture
+     *
+     * @param string $picture
+     *
+     * @return User
+     */
+    public function setPicture($picture)
+    {
+        $this->picture = $picture;
+
+        return $this;
+    }
+
+    /**
+     * Get picture
+     *
+     * @return string
+     */
+    public function getPicture()
+    {
+        return $this->picture;
+    }
+
+    /**
      * Set email
      *
      * @param string $email
@@ -154,5 +192,29 @@ class User
     public function getEmail()
     {
         return $this->email;
+    }
+
+    /**
+     * Set invitedUser
+     *
+     * @param boolean $invitedUser
+     *
+     * @return User
+     */
+    public function setInvitedUser($invitedUser)
+    {
+        $this->invitedUser = $invitedUser;
+
+        return $this;
+    }
+
+    /**
+     * Get invitedUser
+     *
+     * @return bool
+     */
+    public function getInvitedUser()
+    {
+        return $this->invitedUser;
     }
 }
