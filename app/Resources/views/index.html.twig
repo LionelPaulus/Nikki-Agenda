@@ -1,5 +1,11 @@
-{% extends 'base.html.twig' %}
+{% include 'header.html.twig' %}
 
 {% block body %}
-Hello World, I'm the home page !
+    <div id="container">
+        <img src="#" alt="logo nikki">
+        <h1>Connectez-vous</h1>
+        {% include 'login.html.twig' %}
+    </div>
 {% endblock %}
+
+{% include 'footer.html.twig' %}
