@@ -18,4 +18,17 @@ class DefaultController extends Controller
             'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
         ]);
     }
+
+    /**
+     * @Route("/success", name="success")
+     */
+    public function userInfos(Request $request)
+    {
+      die($request);
+
+        // replace this example code with whatever you need
+        return $this->render('user.html.twig', [
+            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
+        ]);
+    }
 }
