@@ -33,27 +33,6 @@ class UserController extends Controller
         ));
     }
 
-    public function registerUser($googleAuth, $firstName, $lastName, $picture, $email)
-    {
-        if (empty($email)) {
-            throw new \Exception("Email is empty.");
-        }
-
-        $user = new User();
-        $user->setGoogleAuth($googleAuth);
-        $user->setFirstName($firstName);
-        $user->setLastName($lastName);
-        $user->setPicture($picture);
-        $user->setEmail($email);
-        $user->setInvitedUser(0);
-
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($user);
-        $em->flush();
-
-        return new Response('Saved new user with id '.$user->getId());
-    }
-
     public function userLogin($googleAuth, $firstName, $lastName, $picture, $email)
     {
         if (empty($email)) {
@@ -73,7 +52,9 @@ class UserController extends Controller
             $user->setEmail($email);
             $user->setInvitedUser(0);
 
-            $this->getDoctrine()->getManager()->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user);
+            $em->flush();
 
             return new Response('Saved new user with id '.$user->getId());
         } else {
