@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+    </head>
+    <body>
+        <div id="menu">
+            {% block menu %}
+                <ul>
+                    <li><a href="#">profile</a></li>
+                    <li><a href="#">upcoming</a></li>
+                    <li><a href="#"><img src="#" alt="logo nikki"></a></li>
+                    <li><a href="#">feature</a></li>
+                    <li><a href="#">mail</a></li>
+                </ul>
+            {% endblock %}
+        </div>
