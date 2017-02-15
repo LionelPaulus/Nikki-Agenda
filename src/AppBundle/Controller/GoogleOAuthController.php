@@ -50,39 +50,38 @@ class GoogleOAuthController extends Controller
             $client->getGoogleClient()->setScopes($this->accessScope);
             $client->authenticate($code);
 
+            // Get accessToken
             $accessToken = $client->getAccessToken();
-            // TODO: Store accessToken
 
+            // Set accessToken
             $client->setAccessToken($accessToken);
 
+            // Start Google_Service_Oauth2 for userinfos
             $google_oauth = new \Google_Service_Oauth2($client->getGoogleClient());
-            $userinfo = $google_oauth->userinfo->get();
+            $userinfos = $google_oauth->userinfo->get();
 
-
+            // Create or update the user in DB using the UserController
             $UserController = $this->get('UserController');
             $UserController->userLogin(
                 $accessToken['access_token'],
-                $userinfo->givenName,
-                $userinfo->familyName,
-                $userinfo->picture,
-                $userinfo->email
+                $userinfos->givenName,
+                $userinfos->familyName,
+                $userinfos->picture,
+                $userinfos->email
             );
 
+            // Create PHP session and set userinfos
             $session = $request->getSession();
             $session->start();
 
             $session->set('userGoogleAuth', $accessToken['access_token']);
-            $session->set('userFirstName', $userinfo->givenName);
-            $session->set('userLastName', $userinfo->familyName);
-            $session->set('userPicture', $userinfo->picture);
-            $session->set('userEmail', $userinfo->email);
-            echo '<pre>';
-            var_dump($session->get('userEmail'));
-            echo '</pre>';
+            $session->set('userFirstName', $userinfos->givenName);
+            $session->set('userLastName', $userinfos->familyName);
+            $session->set('userPicture', $userinfos->picture);
+            $session->set('userEmail', $userinfos->email);
 
-            die();
-
-            $calendar = new \Google_Service_Calendar($client->getGoogleClient()); // Works
+            // Redirect to app
+            return $this->redirectToRoute('app');
         } else {
             throw new \Exception("No code sent");
         }
