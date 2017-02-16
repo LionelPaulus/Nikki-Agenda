@@ -21,7 +21,7 @@ class GoogleOAuthController extends Controller
     public function getAuthenticationCodeAction()
     {
         $client = $this->container->get('happyr.google.api.client');
-
+ 
         // Determine the level of access your application needs
         $client->getGoogleClient()->setScopes($this->accessScope);
 

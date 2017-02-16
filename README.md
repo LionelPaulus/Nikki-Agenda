@@ -9,3 +9,8 @@
 
 ## Commit conventions
 https://gitmoji.carloscuesta.me
+
+## Gulp dev
+
+1. Run npm install
+2. Run gulp sass:watch
