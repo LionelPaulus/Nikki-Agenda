@@ -11,9 +11,14 @@
 // Components
 @import 'components/Component';
 @import 'components/Popups';
+@import 'components/Header';
 
 // Other
 
 * {
 	//color: red !important;
+}
+
+body {
+    margin: 1% 13% 0 13%;
 }

@@ -1,0 +1,88 @@
+.Menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-list {
+        width:90%;
+        text-align: center;
+        li {
+            text-transform: uppercase;
+            display: inline-block;
+            width:auto;
+            margin:0 20px 0 20px;
+            font-family: "Avenir-light";
+            font-size: 1.1rem;
+            text-align: center;
+            letter-spacing: 2px;
+        }
+        a {
+            text-decoration: none;
+            color: #000000;
+        }
+        img {
+            width:200px;
+            margin-bottom: -6px;
+        }
+    }
+    &-options {
+        width:12%;
+        margin-bottom: -55px;
+        align-self: flex-end;
+        &-colors {
+            li {
+                display: inline-block;
+                margin:0 3px 0 3px;
+            }
+        }
+        &-lang {
+            margin-top: 5px;
+            li {
+                display: inline-block;
+                font-family: "Avenir-heavy";
+                font-size: 0.8rem;
+                margin-right:5px;
+            }
+            img {
+                padding: 6px 6px 0 0;
+            }
+        }
+    }
+}
+
+.Creation {
+    border:2px solid $darkred;
+    background-color: $red;
+    margin-top: 20px;
+    display:flex;
+    padding: 30px;
+    input {
+        width: 70%;
+        border-radius: 4px;
+        border:1px solid $blueinput;
+        font-family: $raleway, sans-serif;
+        font-size: 1.2rem;
+        color: $grey;
+        padding-left: 20px;
+    }
+    &-button {
+        border-radius: 4px;
+        margin-left: -15%;
+        border:1px solid $blueinput;
+        cursor:pointer;
+        background-color: $darkred;
+        display:flex;
+        width:19%;
+        align-items: center;
+        img {
+            width:15%;
+            padding:5px;
+            margin-left: 17%;
+        }
+        h6 {
+            font-family: $raleway, sans-serif;
+            font-size: 1.5rem;
+            color:#FEFEFE;
+            margin-left: 2%;
+        }
+    }
+}

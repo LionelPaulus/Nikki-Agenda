@@ -1,11 +1,15 @@
-{% include 'header.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Nikki Agenda{% endblock %}
 
 {% block body %}
-    <div id="container">
-        <img src="#" alt="logo nikki">
-        <h1>Connectez-vous</h1>
-    </div>
-    <a href="/test">test</a>
-{% endblock %}
 
-{% include 'footer.html.twig' %}
+    {% include 'header.html.twig' %}
+
+    <div class="Container">
+
+    </div>
+
+    {% include 'footer.html.twig' %}
+
+{% endblock %}

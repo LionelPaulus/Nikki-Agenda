@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,700");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -42,3 +43,211 @@ blockquote, q {
 table {
   border-collapse: collapse;
   border-spacing: 0; }
+
+.Popup {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%); }
+  .Popup::before {
+    content: url("../img/skin/pin.svg");
+    display: block;
+    width: 15px;
+    position: absolute; }
+  .Popup--open {
+    width: 790px;
+    border: 2px solid #680101; }
+  .Popup-title {
+    font-size: 26px;
+    color: #3D3D3D;
+    font-family: "Raleway", sans-serif;
+    margin: 20px 50px; }
+  .Popup--invite {
+    width: 80%;
+    margin: 50px auto; }
+    .Popup--invite-team {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      text-align: right;
+      font-family: "Raleway";
+      font-size: 19px; }
+    .Popup--invite-place {
+      font-size: 12px; }
+    .Popup--invite-title {
+      font-family: "Avenir-medium";
+      font-size: 20px;
+      position: relative;
+      padding-bottom: 10px; }
+      .Popup--invite-title::after {
+        width: 25%;
+        height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0; }
+    .Popup--invite-date {
+      color: #2bb363;
+      font-family: "Avenir-medium";
+      font-size: 20px;
+      margin-top: 30px;
+      margin-right: 50px;
+      display: inline-block; }
+    .Popup--invite-availability {
+      display: inline-block; }
+      .Popup--invite-availability div {
+        display: inline-block;
+        margin-right: 10px; }
+      .Popup--invite-availability input[type=radio] {
+        position: absolute;
+        visibility: hidden; }
+      .Popup--invite-availability label {
+        font-family: "Avenir-light";
+        font-size: 15px;
+        width: 135px;
+        height: 30px;
+        border: 1px solid #969696;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 3px;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        transition: .2s ease; }
+      .Popup--invite-availability input#available[type=radio]:checked ~ label {
+        background-color: #4285f4;
+        color: #fff; }
+      .Popup--invite-availability input#occupied[type=radio]:checked ~ label {
+        background-color: #d0011a;
+        color: #fff; }
+    .Popup--invite-members {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap; }
+      .Popup--invite-members-title {
+        width: 100%;
+        font-family: "Avenir-light";
+        font-size: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        margin-bottom: 20px; }
+        .Popup--invite-members-title::after {
+          width: 25%;
+          height: 10px;
+          border-bottom: 1px solid #969696;
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0; }
+      .Popup--invite-members-subtitle {
+        width: 25%;
+        font-size: 19px;
+        font-family: "Avenir-medium";
+        color: #3d3d3d; }
+      .Popup--invite-members-list {
+        width: 74%; }
+        .Popup--invite-members-list div {
+          margin-bottom: 15px; }
+        .Popup--invite-members-list-name {
+          font-family: "Avenir-light";
+          font-size: 20px; }
+          .Popup--invite-members-list-name--admin {
+            color: #ffbc4d; }
+        .Popup--invite-members-list-email {
+          font-family: "Avenir-light";
+          font-size: 15px;
+          margin-left: 10px; }
+        .Popup--invite-members-list-availability {
+          float: right; }
+          .Popup--invite-members-list-availability img {
+            width: 18px;
+            vertical-align: middle; }
+  .Popup-submit {
+    width: 145px;
+    height: 40px;
+    background-color: #2bb364;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-family: "Avenir-medium";
+    font-size: 14px;
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 30px; }
+
+.Menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .Menu-list {
+    width: 90%;
+    text-align: center; }
+    .Menu-list li {
+      text-transform: uppercase;
+      display: inline-block;
+      width: auto;
+      margin: 0 20px 0 20px;
+      font-family: "Avenir-light";
+      font-size: 1.1rem;
+      text-align: center;
+      letter-spacing: 2px; }
+    .Menu-list a {
+      text-decoration: none;
+      color: #000000; }
+    .Menu-list img {
+      width: 200px;
+      margin-bottom: -6px; }
+  .Menu-options {
+    width: 12%;
+    margin-bottom: -55px;
+    align-self: flex-end; }
+    .Menu-options-colors li {
+      display: inline-block;
+      margin: 0 3px 0 3px; }
+    .Menu-options-lang {
+      margin-top: 5px; }
+      .Menu-options-lang li {
+        display: inline-block;
+        font-family: "Avenir-heavy";
+        font-size: 0.8rem;
+        margin-right: 5px; }
+      .Menu-options-lang img {
+        padding: 6px 6px 0 0; }
+
+.Creation {
+  border: 2px solid #680101;
+  background-color: #D0021B;
+  margin-top: 20px;
+  display: flex;
+  padding: 30px; }
+  .Creation input {
+    width: 70%;
+    border-radius: 4px;
+    border: 1px solid #A2CDE0;
+    font-family: "Raleway", sans-serif, sans-serif;
+    font-size: 1.2rem;
+    color: #3D3D3D;
+    padding-left: 20px; }
+  .Creation-button {
+    border-radius: 4px;
+    margin-left: -15%;
+    border: 1px solid #A2CDE0;
+    cursor: pointer;
+    background-color: #680101;
+    display: flex;
+    width: 19%;
+    align-items: center; }
+    .Creation-button img {
+      width: 15%;
+      padding: 5px;
+      margin-left: 17%; }
+    .Creation-button h6 {
+      font-family: "Raleway", sans-serif, sans-serif;
+      font-size: 1.5rem;
+      color: #FEFEFE;
+      margin-left: 2%; }
+
+body {
+  margin: 1% 13% 0 13%; }
