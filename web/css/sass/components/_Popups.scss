@@ -1,0 +1,164 @@
+.Popup {
+  &::before {
+    content:url('../img/skin/pin.svg');
+    display: block;
+    width: 15px;
+    position: absolute;
+  }
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  &--open {
+    width: 790px;
+    border: 2px solid #680101
+  }
+  &-title {
+    font-size: 26px;
+    color: #3D3D3D;
+    font-family: $raleway;
+    margin: 20px 50px;
+  }
+  &--invite {
+    width: 80%;
+    margin: 50px auto;
+    &-team {
+      position: absolute;
+      right: 30px;
+      top: 30px;
+      text-align: right;
+      font-family: "Raleway";
+      font-size: 19px;
+    }
+    &-place {
+      font-size: 12px;
+    }
+    &-title {
+      font-family: "Avenir-medium";
+      font-size: 20px;
+      position: relative;
+      padding-bottom: 10px;
+      &::after {
+        width: 25%; height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0; bottom: 0;
+      }
+    }
+    &-date {
+      color: #2bb363;
+      font-family: "Avenir-medium";
+      font-size: 20px;
+      margin-top: 30px;
+      margin-right: 50px;
+      display: inline-block;
+    }
+    &-availability {
+      display: inline-block;
+      div {
+        display: inline-block;
+        margin-right: 10px;
+      }
+      input[type=radio]{
+        position: absolute;
+        visibility: hidden;
+      }
+      label{
+        font-family: "Avenir-light";
+        font-size: 15px;
+        width: 135px;
+        height: 30px;
+        border: 1px solid #969696;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 3px;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        transition: .2s ease;
+      }
+      input#available[type=radio]:checked ~ label{
+        background-color: #4285f4;
+        color: #fff;
+      }
+      input#occupied[type=radio]:checked ~ label{
+        background-color: #d0011a;
+        color: #fff;
+      }
+    }
+    &-members {
+      margin-top: 30px;
+      display: flex;
+      flex-wrap: wrap;
+      &-title {
+        width: 100%;
+        font-family: "Avenir-light";
+        font-size: 20px;
+        position: relative;
+        padding-bottom: 10px;
+        margin-bottom: 20px;
+        &::after {
+          width: 25%; height: 10px;
+          border-bottom: 1px solid #969696;
+          content: "";
+          position: absolute;
+          left: 0; bottom: 0;
+        }
+      }
+      &-subtitle {
+        width: 25%;
+        font-size: 19px;
+        font-family: "Avenir-medium";
+        color: #3d3d3d;
+      }
+      &-list {
+        width: 74%;
+        div {
+          margin-bottom: 15px;
+        }
+        &-name {
+          font-family: "Avenir-light";
+          font-size: 20px;
+          &--admin {
+            color: #ffbc4d;
+          }
+        }
+        &-email {
+          font-family: "Avenir-light";
+          font-size: 15px;
+          margin-left: 10px;
+        }
+        &-availability {
+          float: right;
+          img {
+            width: 18px;
+            vertical-align: middle;
+          }
+        }
+      }
+    }
+  }
+
+  &--team {
+
+  }
+
+  &--event {
+
+  }
+
+  &-submit {
+    width: 145px;
+    height: 40px;
+    background-color: #2bb364;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-family: "Avenir-medium";
+    font-size: 14px;
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 30px;
+  }
+}
