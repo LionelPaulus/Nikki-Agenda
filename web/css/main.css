@@ -201,20 +201,10 @@ table {
       margin-bottom: -6px; }
   .Menu-options {
     width: 12%;
-    margin-bottom: -55px;
     align-self: flex-end; }
     .Menu-options-colors li {
       display: inline-block;
       margin: 0 3px 0 3px; }
-    .Menu-options-lang {
-      margin-top: 5px; }
-      .Menu-options-lang li {
-        display: inline-block;
-        font-family: "Avenir-heavy";
-        font-size: 0.8rem;
-        margin-right: 5px; }
-      .Menu-options-lang img {
-        padding: 6px 6px 0 0; }
 
 .Creation {
   border: 2px solid #680101;
@@ -248,6 +238,13 @@ table {
       font-size: 1.5rem;
       color: #FEFEFE;
       margin-left: 2%; }
+
+.Container {
+  display: flex;
+  border: 1px solid blue; }
+
+.SideBar {
+  border: 1px solid red; }
 
 body {
   margin: 1% 13% 0 13%; }

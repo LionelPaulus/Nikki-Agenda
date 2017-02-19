@@ -1,0 +1,11 @@
+.Container {
+  display:flex;
+  border:1px solid blue;
+}
+
+.SideBar {
+  border:1px solid red;
+  &-title {
+
+  }
+}

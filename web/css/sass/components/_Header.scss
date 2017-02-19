@@ -26,24 +26,11 @@
     }
     &-options {
         width:12%;
-        margin-bottom: -55px;
         align-self: flex-end;
         &-colors {
             li {
                 display: inline-block;
                 margin:0 3px 0 3px;
-            }
-        }
-        &-lang {
-            margin-top: 5px;
-            li {
-                display: inline-block;
-                font-family: "Avenir-heavy";
-                font-size: 0.8rem;
-                margin-right:5px;
-            }
-            img {
-                padding: 6px 6px 0 0;
             }
         }
     }
