@@ -16,8 +16,15 @@ class AppController extends Controller
     {
         $session = $request->getSession();
 
-        return $this->render('AppBundle:App:app.html.twig', array(
-            'firstName' => $session->get('userFirstName'),
-        ));
+        if (empty($session->get('userGoogleAuth'))) {
+            // Check if user is logged, if not redirect to homepage
+            return $this->redirectToRoute('homepage');
+        } else {
+            // User is logged
+            
+            return $this->render('AppBundle:App:app.html.twig', array(
+                'firstName' => $session->get('userFirstName'),
+            ));
+        }
     }
 }
