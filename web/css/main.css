@@ -44,7 +44,23 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+@font-face {
+  src: url(../fonts/Avenir-Heavy.ttf);
+  font-family: "Avenir-heavy"; }
+
+@font-face {
+  src: url(../fonts/Avenir-Light.ttf);
+  font-family: "Avenir-light"; }
+
+@font-face {
+  src: url(../fonts/Avenir-Medium.ttf);
+  font-family: "Avenir-medium"; }
+
 .Popup {
+  transition: .5s ease;
+  overflow: hidden;
+  max-height: 0%;
+  width: 0px;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -55,25 +71,29 @@ table {
     width: 15px;
     position: absolute; }
   .Popup--open {
+    border: 2px solid #680101;
+    max-height: 100%;
     width: 790px;
-    border: 2px solid #680101; }
+    z-index: 10;
+    background-color: #fff; }
   .Popup-title {
     font-size: 26px;
     color: #3D3D3D;
     font-family: "Raleway", sans-serif;
     margin: 20px 50px; }
+  .Popup-info {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    text-align: right;
+    font-family: "Raleway";
+    font-size: 19px;
+    text-transform: uppercase; }
+    .Popup-info-more {
+      font-size: 12px; }
   .Popup--invite {
     width: 80%;
     margin: 50px auto; }
-    .Popup--invite-team {
-      position: absolute;
-      right: 30px;
-      top: 30px;
-      text-align: right;
-      font-family: "Raleway";
-      font-size: 19px; }
-    .Popup--invite-place {
-      font-size: 12px; }
     .Popup--invite-title {
       font-family: "Avenir-medium";
       font-size: 20px;
@@ -110,7 +130,7 @@ table {
         border: 1px solid #969696;
         text-align: center;
         line-height: 30px;
-        border-radius: 3px;
+        border-radius: 5px;
         display: block;
         position: relative;
         cursor: pointer;
@@ -163,6 +183,97 @@ table {
           .Popup--invite-members-list-availability img {
             width: 18px;
             vertical-align: middle; }
+  .Popup--event {
+    width: 80%;
+    margin: 50px auto; }
+    .Popup--event-title {
+      position: relative;
+      padding-bottom: 10px; }
+      .Popup--event-title::after {
+        width: 25%;
+        height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0; }
+      .Popup--event-title input {
+        width: 100%;
+        border: none;
+        font-family: "Avenir-medium";
+        font-size: 20px; }
+      .Popup--event-title input:focus {
+        outline: none; }
+    .Popup--event-subtitle {
+      text-transform: uppercase;
+      margin-top: 20px;
+      font-family: "Avenir-medium";
+      font-size: 12px; }
+    .Popup--event-date {
+      margin-top: 30px;
+      font-size: 20px;
+      font-family: "Avenir-light"; }
+      .Popup--event-date input {
+        font-family: "Avenir-light";
+        font-size: 25px;
+        background-color: #F3F3F3;
+        padding: 5px 10px;
+        border: none;
+        outline: none; }
+      .Popup--event-date span {
+        margin: 0px 10px; }
+    .Popup--event-time {
+      margin-top: 50px;
+      font-family: "Avenir-light";
+      font-size: 20px;
+      display: flex; }
+      .Popup--event-time-title {
+        width: 25%;
+        position: relative;
+        padding-bottom: 10px; }
+        .Popup--event-time-title::after {
+          width: 100%;
+          height: 10px;
+          border-bottom: 1px solid #969696;
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0; }
+      .Popup--event-time input {
+        margin-left: 20px; }
+      .Popup--event-time output {
+        margin-left: 20px;
+        font-family: "Avenir-light";
+        font-size: 25px;
+        background-color: #F3F3F3;
+        color: #a6a6a6;
+        padding: 5px 10px; }
+    .Popup--event-place, .Popup--event-team {
+      margin-top: 50px;
+      font-family: "Avenir-light";
+      font-size: 20px;
+      display: flex; }
+      .Popup--event-place-title, .Popup--event-team-title {
+        position: relative;
+        width: 25%;
+        padding-bottom: 10px;
+        align-self: center; }
+        .Popup--event-place-title::after, .Popup--event-team-title::after {
+          width: 100%;
+          height: 10px;
+          border-bottom: 1px solid #969696;
+          content: "";
+          position: absolute;
+          left: 0;
+          bottom: 0; }
+      .Popup--event-place input, .Popup--event-place select, .Popup--event-team input, .Popup--event-team select {
+        border: none;
+        outline: none;
+        margin-left: 20px;
+        padding: 5px 10px;
+        font-family: "Avenir-light";
+        font-size: 25px;
+        background-color: #F3F3F3; }
   .Popup-submit {
     width: 145px;
     height: 40px;

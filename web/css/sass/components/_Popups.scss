@@ -1,4 +1,8 @@
 .Popup {
+  transition: .5s ease;
+  overflow: hidden;
+  max-height: 0%;
+  width: 0px;
   &::before {
     content:url('../img/skin/pin.svg');
     display: block;
@@ -9,8 +13,11 @@
   left: 50%; top: 50%;
   transform: translateX(-50%) translateY(-50%);
   &--open {
+    border: 2px solid #680101;
+    max-height: 100%;
     width: 790px;
-    border: 2px solid #680101
+    z-index: 10;
+    background-color: #fff;
   }
   &-title {
     font-size: 26px;
@@ -18,20 +25,21 @@
     font-family: $raleway;
     margin: 20px 50px;
   }
+  &-info {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    text-align: right;
+    font-family: "Raleway";
+    font-size: 19px;
+    text-transform: uppercase;
+    &-more {
+      font-size: 12px;
+    }
+  }
   &--invite {
     width: 80%;
     margin: 50px auto;
-    &-team {
-      position: absolute;
-      right: 30px;
-      top: 30px;
-      text-align: right;
-      font-family: "Raleway";
-      font-size: 19px;
-    }
-    &-place {
-      font-size: 12px;
-    }
     &-title {
       font-family: "Avenir-medium";
       font-size: 20px;
@@ -71,7 +79,7 @@
         border: 1px solid #969696;
         text-align: center;
         line-height: 30px;
-        border-radius: 3px;
+        border-radius: 5px;
         display: block;
         position: relative;
         cursor: pointer;
@@ -144,7 +152,109 @@
   }
 
   &--event {
+    width: 80%;
+    margin: 50px auto;
+    &-title {
+      position: relative;
+      padding-bottom: 10px;
+      &::after {
+        width: 25%; height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0; bottom: 0;
+      }
+      input {
+        width: 100%;
+        border: none;
+        font-family: "Avenir-medium";
+        font-size: 20px;
 
+      }
+      input:focus {
+        outline: none;
+      }
+    }
+    &-subtitle {
+      text-transform: uppercase;
+      margin-top: 20px;
+      font-family: "Avenir-medium";
+      font-size: 12px;
+    }
+    &-date {
+      margin-top: 30px;
+      font-size: 20px;
+      font-family: "Avenir-light";
+      input {
+        font-family: "Avenir-light";
+        font-size: 25px;
+        background-color: #F3F3F3;
+        //color: #a6a6a6;
+        padding: 5px 10px;
+        border: none;
+        outline: none;
+      }
+      span {
+        margin: 0px 10px;
+      }
+    }
+    &-time {
+      margin-top: 50px;
+      font-family: "Avenir-light";
+      font-size: 20px;
+      display: flex;
+      &-title {
+        width: 25%;
+        position: relative;
+        padding-bottom: 10px;
+        &::after {
+          width: 100%; height: 10px;
+          border-bottom: 1px solid #969696;
+          content: "";
+          position: absolute;
+          left: 0; bottom: 0;
+        }
+      }
+      input {
+        margin-left: 20px;
+      }
+      output {
+        margin-left: 20px;
+        font-family: "Avenir-light";
+        font-size: 25px;
+        background-color: #F3F3F3;
+        color: #a6a6a6;
+        padding: 5px 10px;
+      }
+    }
+    &-place, &-team {
+      margin-top: 50px;
+      font-family: "Avenir-light";
+      font-size: 20px;
+      display: flex;
+      &-title {
+        position: relative;
+        width: 25%;
+        padding-bottom: 10px;
+        align-self: center;
+        &::after {
+          width: 100%; height: 10px;
+          border-bottom: 1px solid #969696;
+          content: "";
+          position: absolute;
+          left: 0; bottom: 0;
+        }
+      }
+      input, select {
+        border: none;
+        outline: none;
+        margin-left: 20px;
+        padding: 5px 10px;
+        font-family: "Avenir-light";
+        font-size: 25px;
+        background-color: #F3F3F3;
+      }
+    }
   }
 
   &-submit {

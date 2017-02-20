@@ -1,11 +1,11 @@
 <h2>Popups</h2>
 
-<div class="Popup Popup--open">
+<div class="Popup">
   <form action="">
 
     <h3 class="Popup-title">Meeting invite</h3>
+    <div class="Popup-info">Team SDI<div class="Popup-info-more">ROOM 12</div></div>
     <div class="Popup--invite">
-      <div class="Popup--invite-team">TEAM SDI<div class="Popup--invite-place">ROOM 12</div></div>
       <h4 class="Popup--invite-title">Post development progress meeting</h4>
       <div class="Popup--invite-date">Monday, 6th april - 18h</div>
       <div class="Popup--invite-availability">
@@ -33,6 +33,44 @@
             <span class="Popup--invite-members-list-availability"><img src="img/data/uncheck.svg" alt="unavailable"></span>
           </div>
         </div>
+      </div>
+    </div>
+    <input type="submit" name="nom" value="SUBMIT" class="Popup-submit">
+
+  </form>
+</div>
+
+<div class="Popup Popup--open">
+  <form action="">
+    
+    <h3 class="Popup-title">Meeting creation</h3>
+    <div class="Popup-info">Nikki Agenda</div>
+    <div class="Popup--event">
+      <div class="Popup--event-title">
+        <input type="text" id="test" placeholder="Enter here a name for your event">
+      </div>
+      <div class="Popup--event-subtitle">Pick the time slot that suits you more</div>
+      <div class="Popup--event-date">
+        <input type="date">
+        <span>to</span>
+        <input type="date">
+      </div>
+      <div class="Popup--event-time">
+        <div class="Popup--event-time-title">Duration (min)</div>
+        <input type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="15">
+        <output id="volume">15</output>
+      </div>
+      <div class="Popup--event-place">
+        <div class="Popup--event-place-title">Place</div> 
+        <input type="text" placeholder="Room 12">
+      </div>
+      <div class="Popup--event-team">
+        <div class="Popup--event-team-title">Team</div>
+        <select name="Team name">
+          <option value="Team name" selected disabled>Team name</option>
+          <option value="">Team 1</option>
+          <option value="">Team 2</option>
+        </select>
       </div>
     </div>
     <input type="submit" name="nom" value="SUBMIT" class="Popup-submit">
