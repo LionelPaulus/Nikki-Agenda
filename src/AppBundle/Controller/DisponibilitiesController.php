@@ -23,45 +23,18 @@ class DisponibilitiesController extends Controller
         // $start_time = $start_time->format(DateTime::ISO8601);
         // $end_time = $end_time->format(DateTime::ISO8601);
 
-        // List events
-        $calendarId = 'primary';
 
-        // $optParams = array(
-        //   'timeMin' => $start_time,
-        //   'timeMax' => $end_time,
-        //   'timeZone' => 'de',
-        //   'items'=> [
-        //     [
-        //       'id' => $id_list,
-        //     ]
-        //   ],
-        // );
-
-        // $optParams = new {
-        //   "timeMin": $start_time,
-        //   "timeMax": $end_time,
-        //   "timeZone": 'de',
-        //   "items": [
-        //     {
-        //       "id": $id_list,
-        //     }
-        //   ]
-        //   };
-
-        $optParams = (object)[
-            'timeMin' => $start_time,
-            'timeMax' => $end_time,
-            'timeZone' => 'de',
-            'items'=> [
-              [
-                'id' => $id_list,
-              ]
-            ],
-        ];
-        $freebusy = new Google_FreeBusyRequest();
-
-        $disponibilities = $calendar->freebusy($optParams);
-
+        $freebusy = new \Google_Service_Calendar_FreeBusyRequest();
+        $freebusy->setTimeMin($start_time);
+        $freebusy->setTimeMax($end_time);
+        $freebusy->setTimeZone('de');
+        $freebusy->setItems($id_list);
+        $disponibilities = $calendar->freebusy->query($freebusy);
+        echo "<pre>";
+          var_dump($disponibilities); // or var_dump($data);
+        echo "</pre>";
+        die('ok');
+        // return $disponibilities;
         // $disponibilities = $this->get('app.mailer');
         // $mailer->send('ryan@foobar.net', ...);
     }
