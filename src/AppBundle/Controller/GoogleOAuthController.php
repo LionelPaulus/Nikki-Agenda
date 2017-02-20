@@ -49,10 +49,8 @@ class GoogleOAuthController extends Controller
             $client = $this->container->get('happyr.google.api.client');
             $client->getGoogleClient()->setScopes($this->accessScope);
             $client->authenticate($code);
-
             // Get accessToken
             $accessToken = $client->getAccessToken();
-
             // Set accessToken
             $client->setAccessToken($accessToken);
 
@@ -73,8 +71,8 @@ class GoogleOAuthController extends Controller
             // Create PHP session and set userinfos
             $session = $request->getSession();
             $session->start();
-
-            $session->set('userGoogleAuth', $accessToken['access_token']);
+            $session->set('code', $code);
+            $session->set('userGoogleAuth', $accessToken);
             $session->set('userFirstName', $userinfos->givenName);
             $session->set('userLastName', $userinfos->familyName);
             $session->set('userPicture', $userinfos->picture);
