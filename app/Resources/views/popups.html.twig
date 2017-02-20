@@ -10,11 +10,11 @@
       <div class="Popup--invite-date">Monday, 6th april - 18h</div>
       <div class="Popup--invite-availability">
         <div>
-          <input type="radio" id="available" name="availability" checked>
+          <input required type="radio" id="available" name="availability" checked>
           <label for="available">Available</label>
         </div>
         <div>
-          <input type="radio" id="occupied" name="availability">
+          <input required type="radio" id="occupied" name="availability">
           <label for="occupied">Occupied</label>
         </div>
       </div>
@@ -35,45 +35,44 @@
         </div>
       </div>
     </div>
-    <input type="submit" name="nom" value="SUBMIT" class="Popup-submit">
+    <input required type="submit" name="nom" value="SUBMIT" class="Popup-submit">
 
   </form>
 </div>
 
 <div class="Popup Popup--open">
-  <form action="">
+  <form action="" id="eventForm">
     
     <h3 class="Popup-title">Meeting creation</h3>
     <div class="Popup-info">Nikki Agenda</div>
     <div class="Popup--event">
       <div class="Popup--event-title">
-        <input type="text" id="test" placeholder="Enter here a name for your event">
+        <input required type="text" placeholder="Enter here a name for your event" name="event_name">
       </div>
       <div class="Popup--event-subtitle">Pick the time slot that suits you more</div>
       <div class="Popup--event-date">
-        <input type="date">
+        <input required type="date" name="event_dateFrom">
         <span>to</span>
-        <input type="date">
+        <input required type="date" name="event_dateTo">
       </div>
       <div class="Popup--event-time">
         <div class="Popup--event-time-title">Duration (min)</div>
-        <input type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="15">
-        <output id="volume">15</output>
+        <input required type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="15" name="event_duration">
+        <output id="duration">15</output>
       </div>
       <div class="Popup--event-place">
         <div class="Popup--event-place-title">Place</div> 
-        <input type="text" placeholder="Room 12">
+        <input required type="text" placeholder="Room 12" name="event_place">
       </div>
       <div class="Popup--event-team">
         <div class="Popup--event-team-title">Team</div>
-        <select name="Team name">
+        <select name="event_teamName">
           <option value="Team name" selected disabled>Team name</option>
           <option value="">Team 1</option>
           <option value="">Team 2</option>
         </select>
       </div>
     </div>
-    <input type="submit" name="nom" value="SUBMIT" class="Popup-submit">
-
+    <input required type="submit" value="submit" class="Popup-submit">
   </form>
 </div>
