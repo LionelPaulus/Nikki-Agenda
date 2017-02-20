@@ -7,15 +7,11 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 
 class DisponibilitiesController extends Controller
 {
-    // private $accessScope = [
-    //   \Google_Service_Calendar::CALENDAR,
-    //   \Google_Service_People::CONTACTS_READONLY
-    // ];
 
     /**
-     * @Route("/dispos")
+     * @Route("/dispos/{start_time}/{end_time}")
      */
-    public function findDisposAction()
+    public function findDisposAction($start_time, $end_time)
     {
 
         $client = $this->container->get('happyr.google.api.client');
@@ -23,19 +19,48 @@ class DisponibilitiesController extends Controller
         $client->setAccessToken($accessToken);
 
         $calendar = new \Google_Service_Calendar($client->getGoogleClient());
+        $id_list = $calendar->calendarList->listCalendarList();
+        // $start_time = $start_time->format(DateTime::ISO8601);
+        // $end_time = $end_time->format(DateTime::ISO8601);
 
         // List events
         $calendarId = 'primary';
-        $optParams = array(
-          'maxResults' => 10,
-          'orderBy' => 'startTime',
-          'singleEvents' => true,
-          'timeMin' => date('c'),
-        );
 
-        $listEvents = $calendar->events->listEvents($calendarId, $optParams);
-        var_dump($listEvents);
-        die();
+        // $optParams = array(
+        //   'timeMin' => $start_time,
+        //   'timeMax' => $end_time,
+        //   'timeZone' => 'de',
+        //   'items'=> [
+        //     [
+        //       'id' => $id_list,
+        //     ]
+        //   ],
+        // );
+
+        // $optParams = new {
+        //   "timeMin": $start_time,
+        //   "timeMax": $end_time,
+        //   "timeZone": 'de',
+        //   "items": [
+        //     {
+        //       "id": $id_list,
+        //     }
+        //   ]
+        //   };
+
+        $optParams = (object)[
+            'timeMin' => $start_time,
+            'timeMax' => $end_time,
+            'timeZone' => 'de',
+            'items'=> [
+              [
+                'id' => $id_list,
+              ]
+            ],
+        ];
+        $freebusy = new Google_FreeBusyRequest();
+
+        $disponibilities = $calendar->freebusy($optParams);
 
         // $disponibilities = $this->get('app.mailer');
         // $mailer->send('ryan@foobar.net', ...);
