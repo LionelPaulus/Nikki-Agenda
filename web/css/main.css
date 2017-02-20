@@ -214,6 +214,7 @@ table {
   padding: 30px; }
   .Creation input {
     width: 70%;
+    margin-left: 20px;
     border-radius: 4px;
     border: 1px solid #A2CDE0;
     font-family: "Raleway", sans-serif, sans-serif;
@@ -241,10 +242,137 @@ table {
 
 .Container {
   display: flex;
-  border: 1px solid blue; }
+  align-items: flex-start;
+  justify-content: space-between; }
 
 .SideBar {
-  border: 1px solid red; }
+  border: 2px solid #680101;
+  width: 23%;
+  margin-top: 7%;
+  background-color: #D0021B; }
+  .SideBar-title {
+    text-transform: uppercase;
+    font-family: "Avenir-heavy", sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: #3D3D3D;
+    text-align: center;
+    background-color: #FEFEFE;
+    padding: 10px 0 10px 0; }
+  .SideBar-content {
+    margin-top: 4%;
+    height: 30rem; }
+    .SideBar-content li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      .SideBar-content li div {
+        border: 2px solid #FEFEFE;
+        width: 100%;
+        margin-top: 2%; }
+    .SideBar-content h4 {
+      text-transform: uppercase;
+      font-family: "Avenir-medium", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 4px;
+      color: #FEFEFE;
+      padding: 10px 0 10px 20px; }
+    .SideBar-content img[alt*="Add"] {
+      width: 5%;
+      height: 5%;
+      margin-right: 10%; }
+    .SideBar-content p {
+      font-family: "Avenir-medium", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: #FEFEFE;
+      padding: 25px 0 25px 20px; }
+    .SideBar-content img[alt*="See"] {
+      width: 3%;
+      height: 3%;
+      margin-right: 10%; }
+  .SideBar-footer h3 {
+    text-transform: uppercase;
+    font-family: "Avenir-heavy", sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: #FEFEFE;
+    text-align: center;
+    background-color: #680101;
+    padding: 10px 0 10px 0; }
+
+.Upcoming {
+  width: 77%;
+  margin-left: 2%;
+  margin-top: 3%; }
+  .Upcoming-header {
+    display: flex; }
+    .Upcoming-header h2 {
+      font-family: "Avenir-heavy", sans-serif;
+      font-size: 3rem;
+      margin-left: 4%; }
+    .Upcoming-header h4 {
+      font-family: "Avenir-light", sans-serif;
+      font-size: 1.3rem;
+      margin-left: 20%;
+      color: #D0021B; }
+  .Upcoming-content {
+    margin-top: 3%; }
+    .Upcoming-content h5 {
+      font-family: "Avenir-light", sans-serif;
+      font-size: 1.3rem;
+      margin-left: 7%;
+      color: #000000; }
+    .Upcoming-content-line {
+      border: 1px solid #BAB9B9;
+      margin-left: 7%;
+      width: 20%; }
+
+.Card {
+  border: 2px solid #680101;
+  width: 32%;
+  margin-top: 2%;
+  margin-left: 0.5%;
+  display: inline-block; }
+  .Card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .Card-header div {
+      width: 10px;
+      background-color: #680101;
+      height: 50px; }
+    .Card-header h6 {
+      font-family: "Raleway", sans-serif, sans-serif;
+      text-transform: uppercase;
+      font-size: 0.7rem; }
+    .Card-header h5 {
+      font-family: 'Avenir-light', sans-serif;
+      font-size: 1.1rem;
+      padding-right: 7px; }
+  .Card-content {
+    padding: 7% 7% 13% 7%; }
+    .Card-content h3 {
+      font-family: 'Avenir-medium', sans-serif;
+      font-size: 1.5rem;
+      color: #3D3D3D; }
+    .Card-content p {
+      font-family: 'Avenir-light', sans-serif;
+      font-size: 1rem;
+      color: #3D3D3D; }
+  .Card-footer {
+    background-color: #D0021B;
+    border-top: 2px solid #BAB9B9;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .Card-footer a {
+      color: #FEFEFE;
+      font-family: 'Avenir-light', sans-serif;
+      font-size: 1rem;
+      padding: 3%; }
+    .Card-footer img {
+      padding: 3%; }
 
 body {
   margin: 1% 13% 0 13%; }
