@@ -71,7 +71,6 @@ class GoogleOAuthController extends Controller
             // Create PHP session and set userinfos
             $session = $request->getSession();
             $session->start();
-            $session->set('code', $code);
             $session->set('userGoogleAuth', $accessToken);
             $session->set('userFirstName', $userinfos->givenName);
             $session->set('userLastName', $userinfos->familyName);
