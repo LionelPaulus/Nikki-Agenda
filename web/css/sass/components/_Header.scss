@@ -23,13 +23,29 @@
                 display: inline-block;
                 margin:0 3px 0 3px;
             }
+            div {
+                border-radius:20px;
+                width:17px;
+                height:17px;
+                border:1px solid #979797;
+            }
+            &-red {
+                background-color: $red;
+            }
+            &-blue {
+                background-color: $blue;
+            }
+            &-green {
+                background-color: $green;
+            }
+            &-yellow {
+                background-color: $yellow;
+            }
         }
     }
 }
 
 .Creation {
-    border:2px solid $darkred;
-    background-color: $red;
     margin-top: 20px;
     display:flex;
     padding: 30px;
@@ -48,7 +64,6 @@
         margin-left: -15%;
         border:1px solid $blueinput;
         cursor:pointer;
-        background-color: $darkred;
         display:flex;
         width:19%;
         align-items: center;

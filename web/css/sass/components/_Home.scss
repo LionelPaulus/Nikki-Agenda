@@ -5,10 +5,8 @@
 }
 
 .SideBar {
-  border:2px solid $darkred;
   width:23%;
   margin-top: 7%;
-  background-color: $red;
   &-title {
     text-transform: uppercase;
     font-family: "Avenir-heavy", sans-serif;
@@ -66,7 +64,6 @@
           letter-spacing: 4px;
           color: #FEFEFE;
           text-align: center;
-          background-color: $darkred;
           padding:10px 0 10px 0;
       }
   }
@@ -87,7 +84,6 @@
         font-family: "Avenir-light", sans-serif;
         font-size: 1.3rem;
         margin-left: 20%;
-        color:$red;
       }
     }
     &-content {
@@ -108,7 +104,6 @@
 }
 
 .Card {
-    border: 2px solid $darkred;
     width:32%;
     margin-top:2%;
     margin-left:0.5%;
@@ -119,7 +114,6 @@
         justify-content: space-between;
         div {
             width:10px;
-            background-color: $darkred;
             height:50px;
         }
         h6 {
@@ -147,8 +141,7 @@
       }
     }
     &-footer {
-      background-color: $red;
-      border-top: 2px solid #BAB9B9;
+      border:none!important;
       display:flex;
       justify-content: space-between;
       align-items: center;

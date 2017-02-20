@@ -44,6 +44,22 @@ table {
   border-collapse: collapse;
   border-spacing: 0; }
 
+.BackLighter {
+  background-color: #D0021B;
+  border: 2px solid #680101; }
+
+.BackDarker {
+  background-color: #680101; }
+
+.Border {
+  border: 2px solid #680101; }
+
+.FontLighter {
+  color: #D0021B; }
+
+.FontDarker {
+  color: #680101; }
+
 .Popup {
   position: absolute;
   left: 50%;
@@ -197,10 +213,21 @@ table {
     .Menu-options-colors li {
       display: inline-block;
       margin: 0 3px 0 3px; }
+    .Menu-options-colors div {
+      border-radius: 20px;
+      width: 17px;
+      height: 17px;
+      border: 1px solid #979797; }
+    .Menu-options-colors-red {
+      background-color: #D0021B; }
+    .Menu-options-colors-blue {
+      background-color: #4990E2; }
+    .Menu-options-colors-green {
+      background-color: #64A41A; }
+    .Menu-options-colors-yellow {
+      background-color: #F6A623; }
 
 .Creation {
-  border: 2px solid #680101;
-  background-color: #D0021B;
   margin-top: 20px;
   display: flex;
   padding: 30px; }
@@ -218,7 +245,6 @@ table {
     margin-left: -15%;
     border: 1px solid #A2CDE0;
     cursor: pointer;
-    background-color: #680101;
     display: flex;
     width: 19%;
     align-items: center; }
@@ -238,10 +264,8 @@ table {
   justify-content: space-between; }
 
 .SideBar {
-  border: 2px solid #680101;
   width: 23%;
-  margin-top: 7%;
-  background-color: #D0021B; }
+  margin-top: 7%; }
   .SideBar-title {
     text-transform: uppercase;
     font-family: "Avenir-heavy", sans-serif;
@@ -290,7 +314,6 @@ table {
     letter-spacing: 4px;
     color: #FEFEFE;
     text-align: center;
-    background-color: #680101;
     padding: 10px 0 10px 0; }
 
 .Upcoming {
@@ -306,8 +329,7 @@ table {
     .Upcoming-header h4 {
       font-family: "Avenir-light", sans-serif;
       font-size: 1.3rem;
-      margin-left: 20%;
-      color: #D0021B; }
+      margin-left: 20%; }
   .Upcoming-content {
     margin-top: 3%; }
     .Upcoming-content h5 {
@@ -322,7 +344,6 @@ table {
       width: 20%; }
 
 .Card {
-  border: 2px solid #680101;
   width: 32%;
   margin-top: 2%;
   margin-left: 0.5%;
@@ -333,7 +354,6 @@ table {
     justify-content: space-between; }
     .Card-header div {
       width: 10px;
-      background-color: #680101;
       height: 50px; }
     .Card-header h6 {
       font-family: "Raleway", sans-serif, sans-serif;
@@ -354,8 +374,7 @@ table {
       font-size: 1rem;
       color: #3D3D3D; }
   .Card-footer {
-    background-color: #D0021B;
-    border-top: 2px solid #BAB9B9;
+    border: none !important;
     display: flex;
     justify-content: space-between;
     align-items: center; }
@@ -368,8 +387,6 @@ table {
       padding: 3%; }
 
 .Footer {
-  border: 2px solid #680101;
-  background-color: #D0021B;
   margin-top: 5%;
   display: flex;
   justify-content: center;
@@ -387,7 +404,6 @@ table {
     font-family: 'Avenir-black', sans-serif;
     text-transform: uppercase;
     font-size: 0.9rem;
-    color: #D0021B;
     padding: 2%;
     text-align: center;
     letter-spacing: 3.5px;
@@ -404,7 +420,6 @@ table {
 .Credits {
   font-family: 'Avenir-heavy', sans-serif;
   font-size: 0.9rem;
-  color: #680101;
   text-align: center;
   padding: 10px;
   margin-bottom: 3%; }
