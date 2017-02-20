@@ -185,17 +185,9 @@ table {
     width: 90%;
     text-align: center; }
     .Menu-list li {
-      text-transform: uppercase;
       display: inline-block;
       width: auto;
-      margin: 0 20px 0 20px;
-      font-family: "Avenir-light";
-      font-size: 1.1rem;
-      text-align: center;
-      letter-spacing: 2px; }
-    .Menu-list a {
-      text-decoration: none;
-      color: #000000; }
+      margin: 0 20px 0 20px; }
     .Menu-list img {
       width: 200px;
       margin-bottom: -6px; }
@@ -326,6 +318,7 @@ table {
     .Upcoming-content-line {
       border: 1px solid #BAB9B9;
       margin-left: 7%;
+      margin-top: 0.5%;
       width: 20%; }
 
 .Card {
@@ -373,6 +366,48 @@ table {
       padding: 3%; }
     .Card-footer img {
       padding: 3%; }
+
+.Footer {
+  border: 2px solid #680101;
+  background-color: #D0021B;
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+  .Footer-about {
+    width: 25%;
+    padding: 30px; }
+  .Footer-faq {
+    width: 25%;
+    padding: 30px; }
+  .Footer-legal {
+    width: 25%;
+    padding: 30px; }
+  .Footer h6 {
+    font-family: 'Avenir-black', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    color: #D0021B;
+    padding: 2%;
+    text-align: center;
+    letter-spacing: 3.5px;
+    background-color: #FEFEFE; }
+  .Footer a {
+    font-family: 'Avenir-medium', sans-serif;
+    font-size: 0.8rem;
+    color: #FEFEFE; }
+  .Footer li {
+    padding: 2px; }
+  .Footer ul {
+    margin-top: 15px; }
+
+.Credits {
+  font-family: 'Avenir-heavy', sans-serif;
+  font-size: 0.9rem;
+  color: #680101;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 3%; }
 
 body {
   margin: 1% 13% 0 13%; }

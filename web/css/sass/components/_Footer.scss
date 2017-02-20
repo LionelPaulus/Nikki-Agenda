@@ -1,0 +1,50 @@
+.Footer {
+    border:2px solid $darkred;
+    background-color: $red;
+    margin-top:5%;
+    display:flex;
+    justify-content: center;
+    align-items: flex-start;
+    &-about {
+        width:25%;
+        padding:30px;
+    }
+    &-faq {
+        width:25%;
+        padding:30px;
+    }
+    &-legal {
+        width:25%;
+        padding:30px;
+    }
+    h6 {
+        font-family: 'Avenir-black', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        color:$red;
+        padding:2%;
+        text-align: center;
+        letter-spacing: 3.5px;
+        background-color: #FEFEFE;
+    }
+    a {
+        font-family: 'Avenir-medium', sans-serif;
+        font-size: 0.8rem;
+        color:#FEFEFE;
+    }
+    li {
+        padding: 2px;
+    }
+    ul {
+        margin-top: 15px
+    }
+}
+
+.Credits {
+    font-family: 'Avenir-heavy', sans-serif;
+    font-size: 0.9rem;
+    color:$darkred;
+    text-align: center;
+    padding:10px;
+    margin-bottom: 3%;
+}
