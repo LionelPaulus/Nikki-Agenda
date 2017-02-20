@@ -19,20 +19,39 @@ class DisponibilitiesController extends Controller
         $client->setAccessToken($accessToken);
 
         $calendar = new \Google_Service_Calendar($client->getGoogleClient());
-        $id_list = $calendar->calendarList->listCalendarList();
+        $list = $calendar->calendarList->listCalendarList();
         // $start_time = $start_time->format(DateTime::ISO8601);
         // $end_time = $end_time->format(DateTime::ISO8601);
-
+        //
+        // echo "<pre>";
+        //   var_dump($list);
+        // echo "</pre>";
+        // die();
+        // foreach ($list->getItems() as $calendarListEntry) {
+        //     $temp = $calendarListEntry->id;
+        //     foreach ($em as $emTemp) {
+        //         if ($temp == $emTemp) {
+        //             $idArray[$count] = $temp;
+        //             //echo $idArray[$count].'<br>';
+        //             $count++;
+        //         }
+        //     }
+        // }
 
         $freebusy = new \Google_Service_Calendar_FreeBusyRequest();
         $freebusy->setTimeMin($start_time);
         $freebusy->setTimeMax($end_time);
-        $freebusy->setTimeZone('de');
-        $freebusy->setItems($id_list);
+        $freebusy->setTimeZone('DE');
+        // $freebusy->setItems(array($id_list));
+        $item = new \Google_Service_Calendar_FreeBusyRequestItem();
+        $item->setId('primary');
+        $freebusy->setItems(array($item));
         $disponibilities = $calendar->freebusy->query($freebusy);
+
         echo "<pre>";
-          var_dump($disponibilities); // or var_dump($data);
+          var_dump($disponibilities);
         echo "</pre>";
+
         die('ok');
         // return $disponibilities;
         // $disponibilities = $this->get('app.mailer');
