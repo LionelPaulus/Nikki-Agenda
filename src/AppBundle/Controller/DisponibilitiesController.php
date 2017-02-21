@@ -4,6 +4,7 @@ namespace AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class DisponibilitiesController extends Controller
 {
@@ -34,8 +35,6 @@ class DisponibilitiesController extends Controller
         $item->setId('primary');
         $freebusy->setItems(array($item));
         $disponibilities = $calendar->freebusy->query($freebusy);
-
-        return $disponibilities;
-
+        return new JsonResponse($disponibilities);
     }
 }
