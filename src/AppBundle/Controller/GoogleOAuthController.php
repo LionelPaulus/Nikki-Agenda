@@ -61,7 +61,7 @@ class GoogleOAuthController extends Controller
             // Create or update the user in DB using the UserController
             $UserController = $this->get('UserController');
             $UserController->userLogin(
-                $accessToken['access_token'],
+                json_encode($accessToken),
                 $userinfos->givenName,
                 $userinfos->familyName,
                 $userinfos->picture,
