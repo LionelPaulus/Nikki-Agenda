@@ -11,6 +11,10 @@ services:
         class: AppBundle\Controller\UserController
         calls:
             - [setContainer, ["@service_container"]]
+    app.service.google_contacts_api:
+        class: AppBundle\Service\GoogleContactsService
+        arguments: ['@service_container']
+
     app.service.busyslots:
         class: AppBundle\Service\BusySlotsService
         arguments: ['@service_container']

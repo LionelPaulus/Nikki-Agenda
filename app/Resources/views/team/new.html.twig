@@ -1,16 +1,24 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>Team creation</h1>
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/textext.core.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/textext.plugin.tags.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/textext.plugin.prompt.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/textext.plugin.focus.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/textext.plugin.autocomplete.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('css/textext.plugin.arrow.css') }}">
 
     {{ form_start(form) }}
-        {{ form_widget(form) }}
-        <input type="submit" value="Create" />
+    {{ form_widget(form) }}
     {{ form_end(form) }}
 
-    <ul>
-        <li>
-            <a href="{{ path('team_index') }}">Back to the list</a>
-        </li>
-    </ul>
+    <script type="text/javascript" src="{{ asset('scripts/jquery-1.8.2.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/textext.core.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/textext.plugin.ajax.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/textext.plugin.tags.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/textext.plugin.prompt.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/textext.plugin.focus.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/textext.plugin.autocomplete.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/textext.plugin.arrow.js') }}"></script>
+    <script type="text/javascript" src="{{ asset('scripts/app-members-suggestions.js') }}"></script>
 {% endblock %}
