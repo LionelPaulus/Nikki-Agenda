@@ -13,13 +13,19 @@ class BusySlotsService
         $this->container = $container;
     }
 
-    public function retrieveBusySlots($start_time, $end_time)
+    public function retrieveBusySlots($start_time, $end_time, $id_user)
     {
         // Set google client
         $client = $this->container->get('happyr.google.api.client');
-        // Set access token
-        $accessToken = $this->container->get('session')->get('userGoogleAuth');
-        $client->setAccessToken($accessToken);
+
+        $em = $this->container->get('doctrine')->getEntityManager();
+        // Get user id
+        $user = $em->getRepository('AppBundle:User')->findOneById($id_user);
+
+        $user_auth = $user->getGoogleAuth();
+
+        // $accessToken = $this->container->get('session')->get('userGoogleAuth');
+        $client->setAccessToken($user_auth);
 
         // Format datetime so it is usable by Google Freebusy api
 
