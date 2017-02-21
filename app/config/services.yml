@@ -14,6 +14,7 @@ services:
     app.service.google_contacts_api:
         class: AppBundle\Service\GoogleContactsService
         arguments: ['@service_container']
-    app.disponibilities:
-        class:        AppBundle\Disponibilities
-        arguments:    [userGoogleAuth]
+
+    app.service.busyslots:
+        class: AppBundle\Service\BusySlotsService
+        arguments: ['@service_container']
