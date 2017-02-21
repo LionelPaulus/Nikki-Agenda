@@ -4,4 +4,12 @@
 
 {% block body %}
     <h1>Welcome in the app {{ firstName }} :)</h1>
+    <h1>My teams</h1>
+    <ul>
+        {% for team in user_teams %}
+            <li><a href="app/{{team.id}}">{{team.name}}</a></li>
+        {% endfor %}
+    </ul>
+    <h1>Create a new team</h1>
+    {% include 'team/new.html.twig' %}
 {% endblock %}

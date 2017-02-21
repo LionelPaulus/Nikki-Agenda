@@ -1,0 +1,14 @@
+{% extends "::base.html.twig" %}
+
+{% block title %}AppBundle:App:app{% endblock %}
+
+{% block body %}
+    <h1>{{team.name}}</h1>
+    <p>{{team.description}}</p>
+    <h2>Team members</h2>
+    <ul>
+        {% for member in team.members %}
+            <li>{{member.firstName}} {{member.lastName}}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

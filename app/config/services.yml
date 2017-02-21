@@ -11,3 +11,9 @@ services:
         class: AppBundle\Controller\UserController
         calls:
             - [setContainer, ["@service_container"]]
+    app.service.google_contacts_api:
+        class: AppBundle\Service\GoogleContactsService
+        arguments: ['@service_container']
+    app.disponibilities:
+        class:        AppBundle\Disponibilities
+        arguments:    [userGoogleAuth]
