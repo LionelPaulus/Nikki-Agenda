@@ -11,6 +11,6 @@ services:
         class: AppBundle\Controller\UserController
         calls:
             - [setContainer, ["@service_container"]]
-    app.disponibilities:
-        class:        AppBundle\Disponibilities
-        arguments:    [userGoogleAuth]
+    app.service.busyslots:
+        class: AppBundle\Service\BusySlotsService
+        arguments: ['@service_container']

@@ -1,24 +1,24 @@
 <?php
+namespace AppBundle\Service;
 
-namespace AppBundle\Controller;
+use Symfony\Component\DependencyInjection\ContainerInterface as Container;
+use Symfony\Component\HttpFoundation\Response;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\JsonResponse;
-
-class DisponibilitiesController extends Controller
+class BusySlotsService
 {
+    private $container;
 
-    /**
-     * @Route("/dispos/{start_time}/{end_time}")
-     */
-    public function findDisposAction($start_time, $end_time)
+    public function __construct(Container $container)
     {
+        $this->container = $container;
+    }
 
+    public function retrieveBusySlots($start_time, $end_time)
+    {
         // Set google client
         $client = $this->container->get('happyr.google.api.client');
         // Set access token
-        $accessToken = $this->get('session')->get('userGoogleAuth');
+        $accessToken = $this->container->get('session')->get('userGoogleAuth');
         $client->setAccessToken($accessToken);
 
         // Format datetime so it is usable by Google Freebusy api
@@ -60,6 +60,6 @@ class DisponibilitiesController extends Controller
             $i ++;
         }
 
-        return new JsonResponse($events);
+        return $events;
     }
 }
