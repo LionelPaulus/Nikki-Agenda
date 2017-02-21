@@ -157,6 +157,8 @@
     &-title {
       position: relative;
       padding-bottom: 10px;
+      font-family: "Avenir-medium";
+      font-size: 20px;
       &::after {
         width: 25%; height: 10px;
         border-bottom: 1px solid #969696;
@@ -169,7 +171,6 @@
         border: none;
         font-family: "Avenir-medium";
         font-size: 20px;
-
       }
       input:focus {
         outline: none;
@@ -253,6 +254,66 @@
         font-family: "Avenir-light";
         font-size: 25px;
         background-color: #F3F3F3;
+      }
+    }
+    &-tags {
+      margin-top: 20px;
+      li {
+        display: inline-block;
+        padding: 5px 40px;
+        color: #fff;
+        font-family: "Avenir-medium";
+        font-size: 14px;
+        margin-right: 20px;
+      }
+      li:nth-child(1) {
+        background-color: #BE6575;
+      }
+      li:nth-child(2) {
+        background-color: #6FA96F;
+
+      }
+      li:nth-child(3) {
+        background-color: #A061D6;
+      }
+    }
+    &-choose {
+      margin-top: 50px;
+      max-height: 150px;
+      overflow-y: scroll;
+      li {
+        width: 100%;
+        margin-bottom: 20px;
+      }
+      div {
+        display: inline-block;
+      }
+      &-title {
+        width: 50%;
+        font-family: "Avenir-light";
+        font-size: 18px;
+      }
+      input[type=radio]{
+        position: absolute;
+        visibility: hidden;
+      }
+      label{
+        font-family: "Avenir-light";
+        font-size: 15px;
+        width: 135px;
+        height: 30px;
+        border: 1px solid #969696;
+        text-align: center;
+        line-height: 30px;
+        border-radius: 5px;
+        display: block;
+        position: relative;
+        cursor: pointer;
+        transition: .2s ease;
+      }
+      input[type=radio]:checked ~ label{
+        background-color: #4285f4;
+        color: #fff;
       }
     }
   }
