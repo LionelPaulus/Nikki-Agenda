@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Team_members list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Teamid</th>
+                <th>Userid</th>
+                <th>Role</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for team_Member in team_Members %}
+            <tr>
+                <td><a href="{{ path('team_members_show', { 'id': team_Member.id }) }}">{{ team_Member.id }}</a></td>
+                <td>{{ team_Member.teamId }}</td>
+                <td>{{ team_Member.userId }}</td>
+                <td>{{ team_Member.role }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('team_members_show', { 'id': team_Member.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('team_members_edit', { 'id': team_Member.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('team_members_new') }}">Create a new team_Member</a>
+        </li>
+    </ul>
+{% endblock %}
