@@ -73,7 +73,7 @@ class UserController extends Controller
             $em->persist($user);
             $em->flush();
 
-            return new Response('Saved new user with id '.$user->getId());
+            return $user->getId();
         } else {
             $user->setGoogleAuth($googleAuth);
             $user->setFirstName($firstName);
@@ -82,7 +82,7 @@ class UserController extends Controller
             $user->setInvitedUser(0);
             $this->getDoctrine()->getManager()->flush();
 
-            return new Response('Updated user with id '.$user->getId());
+            return $user->getId();
         }
     }
 

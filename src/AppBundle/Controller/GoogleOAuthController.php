@@ -60,7 +60,7 @@ class GoogleOAuthController extends Controller
 
             // Create or update the user in DB using the UserController
             $UserController = $this->get('UserController');
-            $UserController->userLogin(
+            $userId = $UserController->userLogin(
                 json_encode($accessToken),
                 $userinfos->givenName,
                 $userinfos->familyName,
@@ -71,6 +71,7 @@ class GoogleOAuthController extends Controller
             // Create PHP session and set userinfos
             $session = $request->getSession();
             $session->start();
+            $session->set('userId', $userId);
             $session->set('userGoogleAuth', $accessToken);
             $session->set('userFirstName', $userinfos->givenName);
             $session->set('userLastName', $userinfos->familyName);
