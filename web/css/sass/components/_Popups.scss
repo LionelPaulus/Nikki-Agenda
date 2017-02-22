@@ -1,5 +1,5 @@
 .Popup {
-  transition: .5s ease;
+  transition: 1s ease;
   overflow: hidden;
   max-height: 0%;
   width: 0px;
@@ -38,8 +38,10 @@
     }
   }
   &--invite {
-    width: 80%;
-    margin: 50px auto;
+    &-container {
+      width: 80%;
+      margin: 50px auto;
+    }
     &-title {
       font-family: "Avenir-medium";
       font-size: 20px;
@@ -152,8 +154,10 @@
   }
 
   &--event {
-    width: 80%;
-    margin: 50px auto;
+    &-container {
+      width: 80%;
+      margin: 50px auto;
+    }
     &-title {
       position: relative;
       padding-bottom: 10px;
@@ -314,6 +318,44 @@
       input[type=radio]:checked ~ label{
         background-color: #4285f4;
         color: #fff;
+      }
+    }
+  }
+  &--validated {
+    background-image: url(../img/skin/maneki.png);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    &-title {
+      margin-top: 95px;
+      text-align: center;
+      font-family: "Avenir-light";
+      font-size: 45px;
+      color: #680202;
+    }
+    &-text {
+      text-align: center;
+      width: 80%;
+      margin: 130px auto 0; 
+      font-size: 20px;
+      font-family: "Avenir-light";
+    }
+    &-footer {
+      width: 80%;
+      margin: 180px auto 65px;
+      text-align: center;
+      font-size: 15px;
+      color: #b5b5b5;
+      text-transform: uppercase;
+      font-family: "Avenir-medium";
+      button {
+        text-transform: uppercase;
+        border: none;
+        background-color: #D0011A;
+        color: #fff;
+        font-family: "Avenir-heavy";
+        padding: 10px 20px;
+        font-size: 15px;
+        margin: 0 15px;
       }
     }
   }

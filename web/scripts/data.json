@@ -1,26 +1,26 @@
 {
 	"events": [{
-		"name": "jeudi 19 - 10h",
-		"id": 45646
+		"name": "lundi 19 - 10h",
+		"id": 1
+	},
+	{
+		"name": "mardi 20 - 15h",
+		"id": 2
+	},
+	{
+		"name": "mercredi 20 - 15h",
+		"id": 3
+	},
+	{
+		"name": "jeudi 20 - 15h",
+		"id": 4
 	},
 	{
 		"name": "vendredi 20 - 15h",
-		"id": 4564
+		"id": 5
 	},
 	{
-		"name": "vendredi 20 - 15h",
-		"id": 7564
-	},
-	{
-		"name": "vendredi 20 - 15h",
-		"id": 125
-	},
-	{
-		"name": "vendredi 20 - 15h",
-		"id": 4568
-	},
-	{
-		"name": "vendredi 20 - 15h",
-		"id": 458
+		"name": "samedi 20 - 15h",
+		"id": 6
 	}]
 }
