@@ -1,0 +1,23 @@
+<?php
+
+namespace AppBundle\Controller;
+
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
+
+class DisposTeamController extends Controller
+{
+
+    /**
+     * @Route("/dispos-team/{start_time}/{end_time}/{id_team}")
+     */
+    public function findDisposTeam($start_time, $end_time, $id_team)
+    {
+        $findDisposTeam = $this->get('app.service.disposteams');
+        $dispos_teams = $findDisposTeam->retrieveDisposTeam($start_time, $end_time, $id_team);
+
+        return new Response($dispos_teams);
+    }
+}
