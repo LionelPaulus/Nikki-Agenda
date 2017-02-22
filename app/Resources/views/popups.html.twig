@@ -40,7 +40,7 @@
 
 </div>
 
-<div class="Popup Popup--event Popup--open">
+<div class="Popup Popup--event">
   <h3 class="Popup-title">Meeting creation</h3>
   <div class="Popup-info">Nikki Agenda</div>
 
@@ -112,6 +112,23 @@
   <div class="Popup--validated-text">Every team member will receive an invite in their inboxes.</div>
   <div class="Popup--validated-footer">Back to your <button type="button">upcoming</button> meetings.</div>
   
+</div>
+
+<div class="Popup Popup--team Popup--open">
+  <h3 class="Popup-title">Create a team</h3>
+  <div class="Popup-info">Nikki Agenda</div>
+
+  <form action="" method="" id="formTeam">
+    <div class="Popup--team-container">
+
+      <div class="Popup--event-time">
+        <div class="Popup--event-time-title">Add members</div>
+        <input required type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="60" name="event_duration">
+        <output id="duration">60</output>
+      </div>
+      
+    </div>
+  </form>
 </div>
 
 <div class="json"></div>
