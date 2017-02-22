@@ -11,12 +11,12 @@ class DisposTeamController extends Controller
 {
 
     /**
-     * @Route("/dispos-team/{start_time}/{end_time}/{id_team}")
+     * @Route("/dispos-team/{start_time}/{end_time}/{id_team}/{duration}")
      */
-    public function findDisposTeam($start_time, $end_time, $id_team)
+    public function findDisposTeam($start_time, $end_time, $id_team, $duration)
     {
         $findDisposTeam = $this->get('app.service.disposteams');
-        $dispos_teams = $findDisposTeam->retrieveDisposTeam($start_time, $end_time, $id_team);
+        $dispos_teams = $findDisposTeam->retrieveDisposTeam($start_time, $end_time, $id_team, $duration);
 
         return new Response($dispos_teams);
     }

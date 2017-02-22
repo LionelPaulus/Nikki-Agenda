@@ -15,6 +15,7 @@ class GoogleContactsService
     public function getAllEmails($accessToken)
     {
         $client = $this->container->get('happyr.google.api.client');
+        
         $client->setAccessToken($accessToken);
 
         $groups = file_get_contents('https://www.google.com/m8/feeds/groups/default/full?v=3.0&alt=json&access_token='.$accessToken['access_token']);
