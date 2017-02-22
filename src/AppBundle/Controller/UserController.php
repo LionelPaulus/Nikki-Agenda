@@ -33,6 +33,23 @@ class UserController extends Controller
         ));
     }
 
+    public function inviteUser($email)
+    {
+        if (empty($email)) {
+            throw new \Exception("Email is empty.");
+        }
+
+        $user = new User();
+        $user->setEmail($email);
+        $user->setInvitedUser(1);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($user);
+        $em->flush();
+
+        return $user->getId();
+    }
+
     public function userLogin($googleAuth, $firstName, $lastName, $picture, $email)
     {
         if (empty($email)) {

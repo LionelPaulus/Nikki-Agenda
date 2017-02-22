@@ -23,7 +23,7 @@ class AppController extends Controller
     {
         $session = $request->getSession();
 
-        if (empty($session->get('userGoogleAuth'))) {
+        if (empty($session->get('userId'))) {
             // Check if user is logged, if not redirect to homepage
             return $this->redirectToRoute('homepage');
         } else {
@@ -66,30 +66,61 @@ class AppController extends Controller
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
+                // Get all invited members
                 $members = $form->get('members')->getData();
-                echo '<pre>';
-                var_dump($members);
-                echo '</pre>';
-                die();
-                foreach ($members as $member) {
-                    echo $member;
+                $members = json_decode($members);
+
+                if (count($members) < 1) {
+                    throw new \Exception("Sorry but you can't create a team if you are alone :( Go make friends !");
                 }
 
-                $team_members = new Team_Members();
-                $team_members->setTeamId($teamId);
-                $team_members->setUserId($userId);
-                $team_members->setRole($role);
-
-                $em = $this->getDoctrine()->getManager();
-                $em->persist($user);
-                $em->flush();
-
+                // Create the team
                 $em = $this->getDoctrine()->getManager();
                 $em->persist($team);
                 $em->flush($team);
+                $teamId = $team->getId();
 
-                //  return $this->redirectToRoute('team_show', array('id' => $team->getId()));
+                // Add the team creator to the team
+                $team_members = new Team_Members();
+                $team_members->setTeamId($teamId);
+                $team_members->setUserId($session->get('userId'));
+                $team_members->setRole(1);
+
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($team_members);
+                $em->flush();
+
+                // For each invited members, add him to the team
+                foreach ($members as $member) {
+                    if ((filter_var($member, FILTER_VALIDATE_EMAIL))&&($member != $session->get('userEmail'))) {
+                        // Search if the user is registered
+                        $user = $em->getRepository('AppBundle:User')->findOneByEmail($member);
+
+                        if ($user) {
+                            // If yes, get his ID
+                            $userId = $user->getId();
+                        } else {
+                            // If not, create it and get his ID
+                            $UserController = $this->get('UserController');
+                            $userId = $UserController->inviteUser($member);
+                        }
+
+                        // Add the user to the team
+                        $team_members = new Team_Members();
+                        $team_members->setTeamId($teamId);
+                        $team_members->setUserId($userId);
+                        $team_members->setRole(0); // Role 0 = not the creator
+
+                        $em = $this->getDoctrine()->getManager();
+                        $em->persist($team_members);
+                        $em->flush();
+                    }
+                }
+
+                // Redirect to the team
+                return $this->redirectToRoute('teamShow', array('id' => $teamId));
             }
+
             $formTwig = $form->createView();
 
             return $this->render('AppBundle:App:app.html.twig', array(
@@ -129,6 +160,7 @@ class AppController extends Controller
                 array_push($team["members"], array(
                     "firstName" => $member_details->getFirstName(),
                     "lastName" => $member_details->getLastName(),
+                    "email" => $member_details->getEmail()
                 ));
             }
 
