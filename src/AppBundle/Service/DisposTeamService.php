@@ -40,18 +40,19 @@ class DisposTeamService
 
         $morning_clamping = array();
 
-        dump($team_busy_slots);
-
         for ($i=0; $i < $interval + 1; $i++) {
             $day = '+'.$i.' day';
             $clamped_day = new \DateTime($start_time->format('Y-m-d').$day);
-            // array_push($team_busy_slots,
-            // [
-            //   "start" => date_timestamp_get(date_time_set($clamped_day, 00, 00, 00)),
-            //   "end" => date_timestamp_get(date_time_set($clamped_day, 10, 00, 00))
-            // ]);
+            array_push($team_busy_slots,
+            [
+              "start" => date_timestamp_get(date_time_set($clamped_day, 00, 00, 00)),
+              "end" => date_timestamp_get(date_time_set($clamped_day, 10, 00, 00))
+            ]);
         }
 
+        echo '<pre>';
+        var_dump($team_busy_slots);
+        echo '</pre>';
         usort($team_busy_slots, function ($a, $b) {
             $ad = $a["start"];
             $bd = $b["start"];
@@ -62,27 +63,21 @@ class DisposTeamService
             return $ad < $bd ? -1 : 1;
         });
 
-        foreach ($team_busy_slots as $event) {
-            dump(date("c", $event['start']));
-            // dump(date("c", $event['end']));
-        }
-
-        dump(json_encode($team_busy_slots));
-        die();
+        echo '<pre>';
+        var_dump($team_busy_slots);
+        echo '</pre>';
 
         $findBusySlots = $this->container->get('app.service.superpositionkiller');
         $team_busy = $findBusySlots->superpositionKiller($team_busy_slots);
-        dump($team_busy);
-        foreach ($team_busy as $busy) {
-            dump(date('c', $busy["start"]));
-        }
-        die();
+        // die();
+        // foreach ($team_busy as $busy) {
+        //     dump(date('c', $busy["start"]));
+        // }
+        // die();
         // $team_busy = $team_busy_slots;
         $free_time_slots = array();
         $events = $team_busy;
-        dump($team_busy);
         $count = count($events)-1;
-        // die();
         $i = 0;
         foreach ($events as $event) {
             if ($i < $count) {
