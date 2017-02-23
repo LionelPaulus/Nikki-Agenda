@@ -256,6 +256,8 @@ function formInvite(){
 teamCreation();
 function teamCreation(){
   $('.SideBar-content li:nth-child(1)').click(function(){
+    $('body').css('overflow','hidden');
+    $('.background-screen').fadeIn();
     $('.Popup--team').fadeIn();
   })
 
