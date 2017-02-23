@@ -16,7 +16,7 @@ class BusySlotsController extends Controller
     {
         $BusySlotsService = $this->get('app.service.busyslots');
         $busy_slots = $BusySlotsService->retrieveBusySlots($start_time, $end_time, $id_user);
-        dump($busy_slots);
+
         return new JsonResponse($busy_slots);
     }
 }
