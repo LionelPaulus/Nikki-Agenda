@@ -56,7 +56,8 @@ class AppController extends Controller
                             "teamName" => $team_details->getName(),
                             "location" => $event_details->location,
                             "startDate" => date("d/m - G\hi", strtotime($event_details->start->dateTime)),
-                            "endDate" => $event_details->end->dateTime
+                            "endDate" => $event_details->end->dateTime,
+                            "link" => $event_details->htmlLink,
                         ]);
                     }
                 }
@@ -149,7 +150,8 @@ class AppController extends Controller
                 'team' => $team,
                 'form' => $form->createView(),
                 'user_teams' => $user_teams,
-                'events' => $events
+                'events' => $events,
+                'counter_events' => count($events)
             ));
         }
     }

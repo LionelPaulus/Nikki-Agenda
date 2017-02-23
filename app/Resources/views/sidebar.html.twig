@@ -9,14 +9,14 @@
                 <img src="{{ asset('images/plus.png') }}" alt="Add">
             </li>
             <li><div></div></li>
+            {% for team in user_teams %}
+            <a href="/app/{{team.id}}">
             <li>
-                <p>Kawaigenda</p>
+                <p>{{team.name}}</p>
                 <img src="{{ asset('images/arrow.png') }}" alt="See">
             </li>
-            <li>
-                <p>AO - 2</p>
-                <img src="{{ asset('images/arrow.png') }}" alt="See">
-            </li>
+            </a>
+            {% endfor %}
         </ul>
         <div class="SideBar-footer">
             <h3 class="BackDarker">notifications</h3>
