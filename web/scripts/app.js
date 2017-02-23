@@ -1,4 +1,4 @@
-console.log('hello world');
+//console.log('hello world');
 
 ChangeColor();
 function ChangeColor(){
@@ -55,7 +55,7 @@ function formPostCreation(){
     $('#homeInput').on('submit', function(e) {
         e.preventDefault();
         var $this = $(this); // L'objet jQuery du formulaire
-        console.log($this);
+        //console.log($this);
 
         // Je récupère les valeurs
         var formData = {
@@ -74,7 +74,7 @@ function formCreation(){
     $('#formCreation').on('submit', function(e) {
         e.preventDefault();
         var $this = $(this); // L'objet jQuery du formulaire
-        console.log($this);
+        //console.log($this);
 
         // Converting dates to UNIX timestamp (*1000 to convert back)
         var fromDateUnix = moment($('#formCreation input[name=fromDate]').val()).unix();
@@ -107,15 +107,15 @@ function formCreation(){
           dataType: 'json',
           beforeSend:function(){
             // this is where we append a loading image
-            console.log('beforeSend');
+            // console.log('beforeSend');
             $('.Popup.Popup--open').append('<div class="loading"><img src="/img/skin/loader1.gif" alt="Loading..." /></div>');
             //$('.loading').fadeIn();
           },
           success:function(data){
             // successful request; do something with the data
-            console.log('success');
+            //console.log('success');
             var result = data.response.events;
-            console.log(result);
+            //console.log(result);
 
             setTimeout(function(){
                 $('.loading').fadeOut();
@@ -161,7 +161,7 @@ function formValidation(a, b){
     $('#formValidation').on('submit', function(e) {
         e.preventDefault();
         var $this = $(this); // L'objet jQuery du formulaire
-        console.log($this);
+        //console.log($this);
 
         // Je récupère les valeurs
         var result   = a;
@@ -170,7 +170,7 @@ function formValidation(a, b){
         var eventId = eventId.slice(8);
         formData.fromDate = result[eventId].fromDate;
         formData.toDate   = result[eventId].toDate;
-        console.log(formData);
+        //console.log(formData);
  
         $.ajax({
           type: "POST",
@@ -179,12 +179,12 @@ function formValidation(a, b){
           dataType: 'json',
           beforeSend:function(){
             // this is where we append a loading image
-            console.log('beforeSend');
+            //console.log('beforeSend');
             $('.loading').fadeIn();
           },
           success:function(data){
             // successful request; do something with the data
-            console.log('success');
+            //console.log('success');
             setTimeout(function(){
               $('.loading').fadeOut();
               $('.Popup--event').empty().addClass('Popup--validated').append('<div class="Popup--validated-title">Meeting created !</div><div class="Popup--validated-text">Every team member will receive an invite in their inboxes.</div><div class="Popup--validated-footer">Back to your <a href="">upcoming</a> meetings.</div>');
@@ -216,15 +216,15 @@ function formInvite(){
         dataType: 'json',
         beforeSend:function(){
           //this is where we append a loading image
-          console.log('beforeSend');
+          //console.log('beforeSend');
           $('.loading').fadeIn();
         },
         success:function(data){
           //successful request; do something with the data
-          console.log('success');
+          //console.log('success');
         },
         error:function(){
-          //failed request; give feedback to user
+          // failed request; give feedback to user
           setTimeout(function(){
               $('.loading').fadeOut();
               $('#formCreation').remove();
@@ -244,7 +244,6 @@ function formInvite(){
                 }
               }
           }, 1000);
-
           console.log('error');
         }
       });    
