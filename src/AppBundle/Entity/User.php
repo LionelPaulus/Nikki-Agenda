@@ -22,9 +22,9 @@ class User
     private $id;
 
     /**
-     * @var string
+     * @var text
      *
-     * @ORM\Column(name="google_auth", type="string", length=255, nullable=true)
+     * @ORM\Column(name="google_auth", type="text", nullable=true)
      */
     private $googleAuth;
 
@@ -77,7 +77,7 @@ class User
     /**
      * Set googleAuth
      *
-     * @param string $googleAuth
+     * @param text $googleAuth
      *
      * @return User
      */
@@ -91,7 +91,7 @@ class User
     /**
      * Get googleAuth
      *
-     * @return string
+     * @return text
      */
     public function getGoogleAuth()
     {
