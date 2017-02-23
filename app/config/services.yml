@@ -18,3 +18,7 @@ services:
     app.service.busyslots:
         class: AppBundle\Service\BusySlotsService
         arguments: ['@service_container']
+
+    app.service.email:
+        class: AppBundle\Service\EmailService
+        arguments: ['@service_container','@mailer']

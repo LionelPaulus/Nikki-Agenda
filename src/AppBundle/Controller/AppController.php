@@ -21,6 +21,9 @@ class AppController extends Controller
      */
     public function appAction(Request $request)
     {
+        // $emailService = $this->get('app.service.email');
+        // var_dump($emailService->invitationEmail("clairezunda@gmail.com", "Lionel", "Paulus", "TeamYolo", "monemail@gmail.com"));
+
         $session = $request->getSession();
 
         if (empty($session->get('userId'))) {
