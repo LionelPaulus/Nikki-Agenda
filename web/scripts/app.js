@@ -74,7 +74,6 @@ function formPostCreation(){
         var formData = {
             'title'     : $('#homeInput input[name=homeInput_title]').val()
         };
-        console.log(formData);
         $('.Popup--event input[name=eventTitle]').val(formData.title);
         $('body').css('overflow','hidden');
         $('.Popup--event').addClass('Popup--open').fadeIn();
@@ -93,8 +92,8 @@ function formCreation(){
         // Converting dates to UNIX timestamp (*1000 to convert back)
         var fromDateUnix = moment($('#formCreation input[name=fromDate]').val()).unix();
         var toDateUnix   = moment($('#formCreation input[name=toDate]').val()).unix();
-        var fromDate     = moment(fromDateUnix*1000).format("Do MMM, YY");
-        var toDate       = moment(toDateUnix*1000).format("Do MMM, YY");
+        var fromDate     = moment(fromDateUnix*1000).format("Do MMM, YYYY");
+        var toDate       = moment(toDateUnix*1000).format("Do MMM, YYYY");
         //var revert = moment(fromDate*1000).format("dddd, MMMM Do YYYY");
 
         // Je récupère les valeurs
@@ -128,9 +127,8 @@ function formCreation(){
           success:function(data){
             // successful request; do something with the data
             console.log('success');
-
-            var result = data;
-            console.log(result.response.events);
+            var result = data.response.events;
+            console.log(result);
 
             setTimeout(function(){
                 $('.loading').fadeOut();
@@ -146,16 +144,21 @@ function formCreation(){
                     +"</ul></div><input type='submit' name='formValidation_submit' value='SUBMIT' class='Popup-submit'></form>"
                 );
                 $('.Popup--event-container').append("<ul class='Popup--event-choose'></ul>");
-                for (var i = 0; i < json.events.length; i++) {
-                    console.log(json.events[i])
-                    $('.Popup--event-choose').append(
-                        "<li><div class='Popup--event-choose-title'>"+json.events[i].name+"</div>"
-                        +"<div><input required type='radio' id='"+json.events[i].id+"' name='event_id'>"
-                        +"<label for='"+json.events[i].id+"'>Choisir</label></div></li>"
-                    );
+                for (var i = 0; i < result.length; i++) {
+
+                  // convert answer from unix to readable
+                  var fromDateData = moment(result[i].fromDate*1000).format("ddd, Do MMM - HH:mm");
+                  var toDateData   = moment(result[i].toDate*1000).format("HH:mm");
+
+                  $('.Popup--event-choose').append(
+                      "<li><div class='Popup--event-choose-title'>"+fromDateData+" to "+toDateData+"</div>"
+                      +"<div><input required type='radio' id='"+"meeting-"+i+"' name='event_id'>"
+                      +"<label for='"+"meeting-"+i+"'>Choisir</label></div></li>"
+                  );
                 };
-                $this.attr('id','formValidation');
-                formValidation();
+
+                $this.attr('id','formValidation');   
+                formValidation(result, formData);
             }, 1000);
           },
           error:function(){
@@ -167,21 +170,24 @@ function formCreation(){
 };
 
 // Second step of the meeting creation
-function formValidation(){
+function formValidation(a, b){
     $('#formValidation').on('submit', function(e) {
         e.preventDefault();
         var $this = $(this); // L'objet jQuery du formulaire
         console.log($this);
- 
+
         // Je récupère les valeurs
-        var formData = {
-            'event'     : $('#formValidation input[name=event_id]').val()
-        };
+        var result   = a;
+        var formData = b;
+        var eventId = $('#formValidation input[name=event_id]:checked').attr('id');
+        var eventId = eventId.slice(8);
+        formData.fromDate = result[eventId].fromDate;
+        formData.toDate   = result[eventId].toDate;
         console.log(formData);
  
         $.ajax({
-          type: $this.attr('method'),
-          url: $this.attr('action'),
+          type: "POST",
+          url: "/api/createEvent",
           data: formData,
           dataType: 'json',
           beforeSend:function(){
@@ -192,14 +198,13 @@ function formValidation(){
           success:function(data){
             // successful request; do something with the data
             console.log('success');
+            setTimeout(function(){
+              $('.loading').fadeOut();
+              $('.Popup--event').empty().addClass('Popup--validated').append('<div class="Popup--validated-title">Meeting created !</div><div class="Popup--validated-text">Every team member will receive an invite in their inboxes.</div><div class="Popup--validated-footer">Back to your <a href="">upcoming</a> meetings.</div>');
+            }, 500);
           },
           error:function(){
             // failed request; give feedback to user
-            setTimeout(function(){
-                $('.loading').fadeOut();
-                $('.Popup--event').empty().addClass('Popup--validated').append('<div class="Popup--validated-title">Meeting created !</div><div class="Popup--validated-text">Every team member will receive an invite in their inboxes.</div><div class="Popup--validated-footer">Back to your <button type="button">upcoming</button> meetings.</div>');
-            }, 1000);
-
             console.log('error');
           }
         });

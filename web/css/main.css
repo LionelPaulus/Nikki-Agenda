@@ -391,7 +391,8 @@ table {
       color: #b5b5b5;
       text-transform: uppercase;
       font-family: "Avenir-medium"; }
-      .Popup--validated-footer button {
+      .Popup--validated-footer a {
+        text-decoration: none;
         text-transform: uppercase;
         border: none;
         background-color: #D0011A;

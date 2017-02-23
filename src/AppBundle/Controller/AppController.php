@@ -31,6 +31,7 @@ class AppController extends Controller
 
             // Get all teams where the user belongs to
             $user_teams = [];
+            $events = [];
             $em = $this->getDoctrine()->getEntityManager();
             // Get user id
             $user = $em->getRepository('AppBundle:User')->findOneByEmail($session->get('userEmail'));
@@ -48,7 +49,6 @@ class AppController extends Controller
                     $api_events = $em->getRepository('AppBundle:Event')->findByTeamId($team->getTeamId());
 
                     $googleCalendarService = $this->get('app.service.google_calendar_api');
-                    $events = [];
                     foreach ($api_events as $event) {
                         $event_details = $googleCalendarService->getEvent($event->getCreatorId(), $event->getGoogleCalendarId());
                         array_push($events, [
@@ -150,7 +150,8 @@ class AppController extends Controller
                 'team' => $team,
                 'form' => $form->createView(),
                 'user_teams' => $user_teams,
-                'events' => $events
+                'events' => $events,
+                'counter_events' => count($events)
             ));
         }
     }

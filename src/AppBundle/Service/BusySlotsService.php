@@ -23,37 +23,20 @@ class BusySlotsService
         // Get user id
         $user = $em->getRepository('AppBundle:User')->findOneById($id_user);
 
+        // Get user auth
         $user_auth = $user->getGoogleAuth();
 
-        // $accessToken = $this->container->get('session')->get('userGoogleAuth');
-        // $client->setAccessToken($user_auth);
-
-        // $AccessTokenService = $this->container->get('app.service.accesstoken');
-        // $accessToken = $AccessTokenService->getAccessToken($id_user);
-
         $client->setAccessToken($user_auth);
-        // Format datetime so it is usable by Google Freebusy api
-        $start_time = new \DateTime($start_time, new \DateTimeZone('Europe/Berlin'));
-        $end_time = new \DateTime($end_time, new \DateTimeZone('Europe/Berlin'));
 
-        // dump($morning_clamping);
-        // die();
+        // Convert timestamp to google friendly date
+        $start_time = date('Y-m-d\TH:i:s', $start_time);
+        $end_time = date('Y-m-d\TH:i:s', $end_time);
 
-        // for ($i=0; $i < $interval + 1; $i++){
-        //   $day = '+'.$i.' day';
-        //   $clamped_day = new \DateTime($start_time->format('Y-m-d').$day);
-        //   $night_clamping[$i]["start"] = date_timestamp_get(date_time_set($clamped_day, 20, 00, 00));
-        //   $night_clamping[$i]["end"] = date_timestamp_get(date_time_set($clamped_day, 22, 00, 00));
-        // }
-
-        // dump($morning_clamping);
-        // die();
-        $start_time = date('c', strtotime($start_time->format('Y-m-d H:i:sP')));
-        $end_time = date('c', strtotime($end_time->format('Y-m-d H:i:sP')));
+        $start_time = $start_time.'+01:00';
+        $end_time = $end_time.'+01:00';
 
         // Retrieve calendars from user
         $calendar = new \Google_Service_Calendar($client);
-        // $list = $calendar->calendarList->listCalendarList();
 
         // Create freebusy request
         $freebusy = new \Google_Service_Calendar_FreeBusyRequest();
@@ -68,6 +51,7 @@ class BusySlotsService
         $events = array();
         $i = 0;
 
+        // Retrieve busy ranges of time in the events array
         foreach ($busy_slots["calendars"]["primary"]["modelData"]["busy"] as $busy) {
             $events[$i] = $busy;
             $i ++ ;
@@ -82,9 +66,6 @@ class BusySlotsService
             $i ++;
         }
 
-        // $events = array_merge($morning_clamping, $events);
-        // dump($events);
-        // die();
         return $events;
     }
 }

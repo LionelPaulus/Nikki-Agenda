@@ -32,6 +32,9 @@ class DisposTeamService
             }
         }
 
+        $start_time = date('Y-m-d\TH:i:s', $start_time);
+        $end_time = date('Y-m-d\TH:i:s', $end_time);
+
         $start_time = new \DateTime($start_time);
         $end_time = new \DateTime($end_time);
 
@@ -95,12 +98,6 @@ class DisposTeamService
             }
         }
 
-        foreach ($team_dispos as $dispo) {
-            dump(date('c', $dispo["start"]));
-            dump(date('c', $dispo["end"]));
-        }
-
-        dump($team_dispos);
-        return new JsonResponse($team_dispos);
+        return $team_dispos;
     }
 }
