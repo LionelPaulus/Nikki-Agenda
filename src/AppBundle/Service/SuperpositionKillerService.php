@@ -14,7 +14,6 @@ class SuperpositionKillerService
         }
 
         for ($i=0; $i < count($array); $i++) {
-            $unset = false;
             // echo $i."<br>";
             // Not the last
             if ($i < count($array) - 1) {
@@ -23,54 +22,63 @@ class SuperpositionKillerService
                     // If next busy end before or at the same time than the current busy
                     if ($array[$i+1]["end"] <= $array[$i]["end"]) {
                         // Delete next busy
-                        unset($new_array[$i+1]);
-                        $unset = true;
-                        $i++;
+                        unset($array[$i]);
+                        array_values($array);
+                        break;
+                        $i--;
                         // echo "Unset A ".($i+1)."<br>";
                     }
 
                     // If next busy end after current busy end
-                    if (($array[$i+1]["end"] > $array[$i]["end"])&&($unset == false)) {
+                    if ($array[$i+1]["end"] > $array[$i]["end"]) {
                         // Replace current busy end by next busy end and delete next busy
-                        $new_array[$i]["end"] = $new_array[$i+1]["end"];
-                        unset($new_array[$i+1]);
-                        $i++;
+                        $array[$i]["end"] = $array[$i+1]["end"];
+                        unset($array[$i]);
+                        array_values($array);
+                        break;
+                        $i--;
                         // echo "Unset E ".($i+1)."<br>";
                     }
                 }
 
                 // If next busy start at the same time than current busy
-                if (($array[$i+1]["start"] === $array[$i]["start"])&&($unset == false)) {
+                if ($array[$i+1]["start"] === $array[$i]["start"]) {
                     // If next busy end before or at the same time than the current busy
                     if ($array[$i+1]["end"] <= $array[$i]["end"]) {
                         // Delete next busy
-                        unset($new_array[$i+1]);
-                        $i++;
+                        unset($array[$i]);
+                        array_values($array);
+                        break;
+                        $i--;
                         // echo "Unset C ".($i+1)."<br>";
                     }
 
                     // If next busy end after thant current busy
-                    if (($array[$i+1]["end"] > $array[$i]["end"])&&($unset == false)) {
+                    if ($array[$i+1]["end"] > $array[$i]["end"]) {
                         // Replace current busy end by next busy end and delete next busy
-                        $new_array[$i]["end"] = $new_array[$i+1]["end"];
-                        unset($new_array[$i+1]);
-                        $i++;
+                        $array[$i]["end"] = $array[$i+1]["end"];
+                        unset($array[$i]);
+                        array_values($array);
+                        break;
+                        $i--;
                         // echo "Unset D ".($i+1)."<br>";
                     }
                 }
 
                 // If next busy start at the same time than current busy end
-                if (($array[$i+1]["start"] === $array[$i]["end"])&&($unset == false)) {
+                if ($array[$i+1]["start"] === $array[$i]["end"]) {
                     // Replace current busy end by next busy end and delete next busy
-                    $new_array[$i]["end"] = $new_array[$i+1]["end"];
-                    unset($new_array[$i+1]);
-                    $i++;
+                    $array[$i]["end"] = $array[$i+1]["end"];
+                    unset($array[$i]);
+                    array_values($array);
+                    break;
+                    $i--;
                     // echo "Unset B ".($i+1)."<br>";
                 }
             }
             // echo "<hr>";
         }
 
-        return array_values($new_array);
+        return array_values($array);
     }
 }
