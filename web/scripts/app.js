@@ -49,19 +49,6 @@ function outputUpdate(vol) {
     document.querySelector('#duration').value = vol;
 };
 
-var json;
-$.getJSON('/scripts/data.json', function(data) {
-    json = data;
-    console.log(json);
-    console.log(json.events.length)
-});
-
-var json_invite;
-$.getJSON('/scripts/data-invite.json', function(data) {
-    json_invite = data;
-    console.log(json_invite);
-});
-
 // Handle the pre-creation meeting input
 formPostCreation();
 function formPostCreation(){
