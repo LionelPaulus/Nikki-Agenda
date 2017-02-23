@@ -265,3 +265,12 @@ function formInvite(){
     });
 
 }
+
+// Create a team popup
+teamCreation();
+function teamCreation(){
+  $('.SideBar-content li:nth-child(1)').click(function(){
+    $('.Popup--team').fadeIn();
+  })
+
+};

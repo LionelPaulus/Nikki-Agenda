@@ -155,6 +155,45 @@
       width: 80%;
       margin: 50px auto;
     }
+    label {
+      margin-top: 50px;
+      font-family: "Avenir-light";
+      font-size: 20px;
+      display: flex;
+      position: relative;
+      width: 25%;
+      padding-bottom: 10px;
+      align-self: center;
+      display: inline-block;
+      &::after {
+        width: 100%; height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0; bottom: 0;
+      }
+    }
+    input, textarea {
+        border: none;
+        outline: none;
+        margin-left: 20px;
+        padding: 5px 10px;
+        font-family: "Avenir-light";
+        font-size: 25px;
+        background-color: #F3F3F3;
+      }
+    .text-core {
+      margin-left: 20px;
+      vertical-align: middle;
+     }
+    .text-core, .text-wrap, textarea {
+      display: inline-block !important;
+      width: 300px !important;
+      height: 50px !important;
+    }
+    form div#form div:nth-child(3) {
+      margin-bottom: 30px;
+    }
     &-members, &-create {
       margin-top: 50px;
       font-family: "Avenir-light";
@@ -393,7 +432,7 @@
     }
   }
 
-  &-submit {
+  &-submit, button#form_save {
     width: 145px;
     height: 40px;
     background-color: #2bb364;
@@ -406,5 +445,6 @@
     float: right;
     margin-right: 30px;
     margin-bottom: 30px;
+    text-transform: uppercase;
   }
 }

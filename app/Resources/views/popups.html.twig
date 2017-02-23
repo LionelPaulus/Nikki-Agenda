@@ -63,33 +63,14 @@
   </form>
 </div>
 
-<div class="Popup Popup--validated">
-  <div class="Popup--validated-title">Meeting created !</div>
-  <div class="Popup--validated-text">Every team member will receive an invite in their inboxes.</div>
-  <div class="Popup--validated-footer">Back to your <button type="button">upcoming</button> meetings.</div>
-</div>
-
 <div class="Popup Popup--team">
   <h3 class="Popup-title">Create a team</h3>
   <div class="Popup-info">Nikki Agenda</div>
+  
 
-  <form action="" method="" id="formTeam">
     <div class="Popup--team-container">
 
-      <div class="Popup--team-members">
-        <div class="Popup--team-members-title">Add members</div>
-      </div>
-      <div class="Popup--team-create">
-        <div class="Popup--team-create-title">Team</div>
-        <div class="Popup--team-create-select">
-          <select reuired name="team_name">
-            <option value="team_one" selected>Team 1</option>
-            <option value="team_two">Team 2</option>
-          </select>
-        </div>
-      </div>
+      {% include '/team/new.html.twig' %}
       
     </div>
-    <input type="submit" name="formTeam_submit" value="SUBMIT" class="Popup-submit">
-  </form>
 </div>
