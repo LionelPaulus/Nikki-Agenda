@@ -1,18 +1,17 @@
 <div class="Popup Popup--invite">
   <h3 class="Popup-title">Meeting invite</h3>
-  <div class="Popup-info">Team SDI<div class="Popup-info-more">ROOM 12</div></div>
-  
+  <div class="Popup-info"><div class="Popup-info-more"></div></div>
   <form action="#" method="POST" id="formInvite">
     <div class="Popup--invite-container">
-      <h4 class="Popup--invite-title">Post development progress meeting</h4>
-      <div class="Popup--invite-date">Monday, 6th april - 18h</div>
+      <h4 class="Popup--invite-title"></h4>
+      <div class="Popup--invite-date"></div>
       <div class="Popup--invite-availability">
         <div>
-          <input required checked type="radio" id="available" name="availability">
+          <input required checked type="radio" id="available" name="availability" value="available">
           <label for="available">Available</label>
         </div>
         <div>
-          <input required type="radio" id="occupied" name="availability">
+          <input required type="radio" id="occupied" name="availability" value="occupied">
           <label for="occupied">Occupied</label>
         </div>
       </div>
@@ -20,22 +19,12 @@
         <h4 class="Popup--invite-members-title">Members invited</h4>
         <div class="Popup--invite-members-subtitle">Name/Email</div>
         <div class="Popup--invite-members-list">
-          <div>
-            <span class="Popup--invite-members-list-name Popup--invite-members-list-name--admin">John Doe</span>
-            <span class="Popup--invite-members-list-email">(johndoe@mail.com)</span>
-            <span class="Popup--invite-members-list-availability"><img src="img/data/check.svg" alt="available"></span>
-          </div>
-          <div>
-            <span class="Popup--invite-members-list-name">Jane Doe</span>
-            <span class="Popup--invite-members-list-email">(janedoe@mail.com)</span>
-            <span class="Popup--invite-members-list-availability"><img src="img/data/uncheck.svg" alt="unavailable"></span>
-          </div>
         </div>
       </div>
     </div>
     <input type="submit" name="formInvite_submit" value="SUBMIT" class="Popup-submit">
   </form>
-
+  <div class="loading"><img src="/img/skin/loader1.gif" alt="Loading..." /></div>
 </div>
 
 <div class="Popup Popup--event">
@@ -74,41 +63,10 @@
   </form>
 </div>
 
-<!-- <div class="Popup Popup--event">
-  <h3 class="Popup-title">Meeting creation</h3>
-  <div class="Popup-info">Nikki Agenda</div>
-  
-  <form action="" method="" id="formValidation">  
-    <div class="Popup--event-container">
-      <div class="Popup--event-title">
-        Réunion d'avancement
-      </div>
-      <div class="Popup--event-subtitle">Pick the time slot that suits you more</div>
-      <ul class="Popup--event-tags">
-        <li>17/02/17 to 19/02/17</li>
-        <li>Salle 12</li>
-        <li>60 minutes</li>
-      </ul>
-      <ul class="Popup--event-choose">
-        <li>
-          <div class="Popup--event-choose-title">Jeudi 17 février - 10AM to 11AM</div>
-          <div>
-            <input type="radio" id="option1" name="event_id" checked>
-            <label for="option1">Choisir</label>
-          </div>
-        </li>
-      </ul>
-    </div>
-    <input type="submit" name="formValidation_submit" value="SUBMIT" class="Popup-submit">
-  </form>
-</div>
- -->
 <div class="Popup Popup--validated">
-  
   <div class="Popup--validated-title">Meeting created !</div>
   <div class="Popup--validated-text">Every team member will receive an invite in their inboxes.</div>
   <div class="Popup--validated-footer">Back to your <button type="button">upcoming</button> meetings.</div>
-  
 </div>
 
 <div class="Popup Popup--team">
@@ -118,12 +76,20 @@
   <form action="" method="" id="formTeam">
     <div class="Popup--team-container">
 
-      <div class="Popup--event-time">
-        <div class="Popup--event-time-title">Add members</div>
-        <input required type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="60" name="event_duration">
-        <output id="duration">60</output>
+      <div class="Popup--team-members">
+        <div class="Popup--team-members-title">Add members</div>
+      </div>
+      <div class="Popup--team-create">
+        <div class="Popup--team-create-title">Team</div>
+        <div class="Popup--team-create-select">
+          <select reuired name="team_name">
+            <option value="team_one" selected>Team 1</option>
+            <option value="team_two">Team 2</option>
+          </select>
+        </div>
       </div>
       
     </div>
+    <input type="submit" name="formTeam_submit" value="SUBMIT" class="Popup-submit">
   </form>
 </div>
