@@ -32,6 +32,7 @@ class GoogleOAuthController extends Controller
         ));
 
         // Request access to offline access
+        // $client->getGoogleClient()->setApprovalPrompt("force");
         $client->getGoogleClient()->setAccessType('offline');
 
         // Send the user to complete their part of the OAuth
