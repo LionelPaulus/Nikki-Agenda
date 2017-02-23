@@ -112,8 +112,8 @@ class APIController extends Controller
             ];
             array_push($fakeDates["events"], [
                 "name" => "lundi 19 - 10h",
-                "fromDate" => "9999",
-                "toDate" => "9999",
+                "fromDate" => "767160360",
+                "toDate" => "767167560",
             ]);
             array_push($fakeDates["events"], [
                 "name" => "mardi 20 - 15h",
