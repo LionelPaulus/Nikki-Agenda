@@ -50,9 +50,6 @@ class DisposTeamService
             ]);
         }
 
-        echo '<pre>';
-        var_dump($team_busy_slots);
-        echo '</pre>';
         usort($team_busy_slots, function ($a, $b) {
             $ad = $a["start"];
             $bd = $b["start"];
@@ -63,18 +60,9 @@ class DisposTeamService
             return $ad < $bd ? -1 : 1;
         });
 
-        echo '<pre>';
-        var_dump($team_busy_slots);
-        echo '</pre>';
-
         $findBusySlots = $this->container->get('app.service.superpositionkiller');
         $team_busy = $findBusySlots->superpositionKiller($team_busy_slots);
-        // die();
-        // foreach ($team_busy as $busy) {
-        //     dump(date('c', $busy["start"]));
-        // }
-        // die();
-        // $team_busy = $team_busy_slots;
+
         $free_time_slots = array();
         $events = $team_busy;
         $count = count($events)-1;
@@ -83,17 +71,32 @@ class DisposTeamService
             if ($i < $count) {
                 $free_time = $events[$i+1]['start'] - $event['end'];
                 $free_time_slots[] = array(
-                    'start' => date("c", $event['end']),
-                    'end' => date("c", $events[$i+1]['start']
-                  ),
+                    'start' => $event['end'],
+                    'end' => $events[$i+1]['start'],
                     'minutes' => $free_time / 60
                 );
                 $i++;
             }
         }
 
-        dump($free_time_slots);
-        die();
-        return new JsonResponse($free_time_slots);
+        $team_dispos = array();
+
+        foreach ($free_time_slots as $range) {
+            if ($range["minutes"] >= $duration) {
+                array_push($team_dispos,
+                    [
+                      "start" => $range["start"],
+                      "end" => $range["start"]+$duration
+                    ]
+                );
+            }
+        }
+
+        // foreach ($team_dispos as $dispo) {
+        //     dump(date('c', $dispo["start"]));
+        //     dump(date('c', $dispo["end"]));
+        // }
+
+        return new JsonResponse($team_dispos);
     }
 }
