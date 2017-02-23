@@ -70,8 +70,14 @@ class AppController extends Controller
                 $members = $form->get('members')->getData();
                 $members = json_decode($members);
 
+                // Security checks
                 if (count($members) < 1) {
                     throw new \Exception("Sorry but you can't create a team if you are alone :( Go make friends !");
+                }
+                if (count($members) == 1) {
+                    if ($members[0] == $session->get('userEmail')) {
+                        throw new \Exception("Nope, you can't create a team with only yourself, selfish !");
+                    }
                 }
 
                 // Create the team
@@ -167,41 +173,6 @@ class AppController extends Controller
             return $this->render('AppBundle:App:team.html.twig', array(
                 'team' => $team,
             ));
-        }
-    }
-
-    /**
-     * @Route("/app/getMembersSuggestions.json", name="getMembersSuggestions")
-     */
-    public function getMembersSuggestions(Request $request)
-    {
-        $session = $request->getSession();
-
-        if (empty($session->get('userGoogleAuth'))) {
-            // Check if user is logged, if not redirect to homepage
-            return $this->redirectToRoute('homepage');
-        } else {
-            // User is logged
-
-            $contactsSuggestions = [];
-
-            // Get all registered users
-            $em = $this->getDoctrine()->getEntityManager();
-            $users = $em->getRepository('AppBundle:User')->findAll();
-            foreach ($users as $user) {
-                array_push($contactsSuggestions, $user->getEmail());
-            }
-
-            // Get user Google Contacts emails
-            $googleContactsService = $this->get('app.service.google_contacts_api');
-            $googleContacts = $googleContactsService->getAllEmails($session->get('userGoogleAuth'));
-            if (count($googleContacts > 0)) {
-                foreach ($googleContacts as $googleContact) {
-                    array_push($contactsSuggestions, $googleContact);
-                }
-            }
-
-            return new JsonResponse($contactsSuggestions);
         }
     }
 }
