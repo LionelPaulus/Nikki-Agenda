@@ -70,8 +70,14 @@ class AppController extends Controller
                 $members = $form->get('members')->getData();
                 $members = json_decode($members);
 
+                // Security checks
                 if (count($members) < 1) {
                     throw new \Exception("Sorry but you can't create a team if you are alone :( Go make friends !");
+                }
+                if (count($members) == 1) {
+                    if ($members[0] == $session->get('userEmail')) {
+                        throw new \Exception("Nope, you can't create a team with only yourself, selfish !");
+                    }
                 }
 
                 // Create the team
