@@ -1,13 +1,42 @@
-{% include 'header.html.twig' %}
+{% extends 'base.html.twig' %}
+
+{% block title %}Nikki Agenda{% endblock %}
 
 {% block body %}
-    <div id="container">
-        <img src="#" alt="logo nikki">
-        <h1>Connectez-vous</h1>
+
+    {% include 'header.html.twig' %}
+
+    <div class="Container">
+        {% include 'sidebar.html.twig' %}
+
+        <div class="Upcoming">
+            <div class="Upcoming-header">
+                <h2>Upcoming meetings</h2>
+                <h4 class="FontLighter">1 Meeting pending</h4>
+            </div>
+            <div class="Upcoming-content">
+                <h5>This week</h5>
+                <div class="Upcoming-content-line"></div>
+                <ul>
+                    {% include 'card.html.twig' %}
+                    {% include 'card.html.twig' %}
+                    {% include 'card.html.twig' %}
+                    {% include 'card.html.twig' %}
+                    {% include 'card.html.twig' %}
+                    {% include 'card.html.twig' %}
+                </ul>
+            </div>
+        </div>
+
+
     </div>
 
-    {% include 'popups.html.twig' %}
+{# 
+  {% include 'popups.html.twig' %}
+#}
 
 {% endblock %}
 
-{% include 'footer.html.twig' %}
+    {% include 'footer.html.twig' %}
+
+{% endblock %}

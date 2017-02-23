@@ -2,3 +2,33 @@
 $raleway: 'Raleway', sans-serif;
 
 // Colors
+$red: #D0021B;
+$darkred: #680101;
+$blue: #4990E2;
+$green: #64A41A;
+$yellow: #F6A623;
+$blueinput: #A2CDE0;
+$grey: #3D3D3D;
+
+// Dynamical colors classes
+
+.BackLighter {
+    background-color: $red;
+    border:2px solid $darkred;
+}
+
+.BackDarker {
+    background-color: $darkred;
+}
+
+.Border {
+    border:2px solid $darkred;
+}
+
+.FontLighter {
+    color:$red;
+}
+
+.FontDarker {
+    color:$darkred;
+}

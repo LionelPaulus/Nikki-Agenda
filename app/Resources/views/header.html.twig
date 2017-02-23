@@ -1,22 +1,10 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8" />
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}
-            <link rel="stylesheet" href="{{ asset('css/main.css') }}">
-        {% endblock %}
-        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
-    </head>
-    <body>
-        <div id="menu">
-            {% block menu %}
-                <ul>
-                    <li><a href="#">profile</a></li>
-                    <li><a href="#">upcoming</a></li>
-                    <li><a href="#"><img src="#" alt="logo nikki"></a></li>
-                    <li><a href="#">feature</a></li>
-                    <li><a href="#">mail</a></li>
-                </ul>
-            {% endblock %}
-        </div>
+{% block header %}
+    {% include 'menu.html.twig' %}
+    <form class="Creation BackLighter" action="#" method="post">
+        <input type="text" name="MeetingName" placeholder="Meeting's Name">
+        <button type="submit" name="Create" class="Creation-button BackDarker">
+            <img src="{{ asset('images/create.png') }}" alt="Create">
+            <h6>Create</h6>
+        </button>
+    </form>
+{% endblock %}

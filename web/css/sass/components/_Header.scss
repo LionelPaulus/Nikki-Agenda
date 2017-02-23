@@ -1,0 +1,82 @@
+.Menu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    &-list {
+        width:90%;
+        text-align: center;
+        li {
+            display: inline-block;
+            width:auto;
+            margin:0 20px 0 20px;
+        }
+        img {
+            width:200px;
+            margin-bottom: -6px;
+        }
+    }
+    &-options {
+        width:12%;
+        align-self: flex-end;
+        &-colors {
+            li {
+                display: inline-block;
+                margin:0 3px 0 3px;
+            }
+            div {
+                border-radius:20px;
+                width:17px;
+                height:17px;
+                border:1px solid #979797;
+            }
+            &-red {
+                background-color: $red;
+            }
+            &-blue {
+                background-color: $blue;
+            }
+            &-green {
+                background-color: $green;
+            }
+            &-yellow {
+                background-color: $yellow;
+            }
+        }
+    }
+}
+
+.Creation {
+    margin-top: 20px;
+    display:flex;
+    padding: 30px;
+    input {
+        width: 70%;
+        margin-left: 20px;
+        border-radius: 4px;
+        border:1px solid $blueinput;
+        font-family: $raleway, sans-serif;
+        font-size: 1.2rem;
+        color: $grey;
+        padding-left: 20px;
+    }
+    &-button {
+        border-radius: 4px;
+        margin-left: -15%;
+        border:1px solid $blueinput;
+        cursor:pointer;
+        display:flex;
+        width:19%;
+        align-items: center;
+        img {
+            width:15%;
+            padding:5px;
+            margin-left: 17%;
+        }
+        h6 {
+            font-family: $raleway, sans-serif;
+            font-size: 1.5rem;
+            color:#FEFEFE;
+            margin-left: 2%;
+        }
+    }
+}
