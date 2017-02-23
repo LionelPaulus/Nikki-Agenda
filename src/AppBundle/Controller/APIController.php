@@ -40,7 +40,10 @@ class APIController extends Controller
 
         // Check data sent
         $datas = [
-            "teamId"
+            "teamId",
+            "eventTitle",
+            "fromDate",
+            "toDate"
         ];
         if ((empty($_POST[$data]))||(is_nan($_POST[$data]))) {
             $this->response->code = "404";
@@ -48,19 +51,25 @@ class APIController extends Controller
             return new JsonResponse($this->response);
         }
 
-        // Create the event
-        $event = new Event();
-        $event->setTeamId($_POST["teamId"]);
-        $event->setCreatorId($request->getSession()->get('userId'));
-        $event->setGoogleCalendarId("999");
+        try {
+            // Create the event
+            $event = new Event();
+            $event->setTeamId($_POST["teamId"]);
+            $event->setCreatorId($request->getSession()->get('userId'));
+            $event->setGoogleCalendarId("999");
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($event);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($event);
+            $em->flush();
 
-        $this->response->response = true;
+            $this->response->response = true;
 
-        return new JsonResponse($this->response);
+            return new JsonResponse($this->response);
+        } catch (Exception $e) {
+            $this->response->code = "500";
+            $this->response->message = "Error: ".$e;
+            return new JsonResponse($this->response);
+        }
     }
 
     /**
@@ -97,24 +106,33 @@ class APIController extends Controller
             }
         }
 
-        $fakeDates = [
-            "events" => []
-        ];
-        array_push($fakeDates["events"], [
-            "name" => "lundi 19 - 10h",
-            "id" => 1
-        ]);
-        array_push($fakeDates["events"], [
-            "name" => "mardi 20 - 15h",
-            "id" => 2
-        ]);
-        array_push($fakeDates["events"], [
-            "name" => "mercredi 20 - 15h",
-            "id" => 3
-        ]);
+        try {
+            $fakeDates = [
+                "events" => []
+            ];
+            array_push($fakeDates["events"], [
+                "name" => "lundi 19 - 10h",
+                "fromDate" => "9999",
+                "toDate" => "9999",
+            ]);
+            array_push($fakeDates["events"], [
+                "name" => "mardi 20 - 15h",
+                "fromDate" => "9999",
+                "toDate" => "9999",
+            ]);
+            array_push($fakeDates["events"], [
+                "name" => "mercredi 20 - 15h",
+                "fromDate" => "9999",
+                "toDate" => "9999",
+            ]);
 
-        $this->response->response = $fakeDates;
+            $this->response->response = $fakeDates;
 
-        return new JsonResponse($this->response);
+            return new JsonResponse($this->response);
+        } catch (Exception $e) {
+            $this->response->code = "500";
+            $this->response->message = "Error: ".$e;
+            return new JsonResponse($this->response);
+        }
     }
 }
