@@ -12,6 +12,28 @@ class GoogleCalendarService
         $this->container = $container;
     }
 
+    public function getEvent($host_id, $event_id)
+    {
+        // Set google client
+        $client = new \Google_Client();
+
+        $em = $this->container->get('doctrine')->getEntityManager();
+
+        // Get $user_auth
+        $user = $em->getRepository('AppBundle:User')->findOneById($host_id);
+        $user_auth = $user->getGoogleAuth();
+
+        $client->setAccessToken($user_auth);
+
+        $service = new \Google_Service_Calendar($client);
+
+        $event = new \Google_Service_Calendar_Event();
+
+        $event = $service->events->get('primary', $event_id);
+
+        return $event;
+    }
+
     public function createEvent($host_id, $properties)
     {
         // Set google client
@@ -31,6 +53,6 @@ class GoogleCalendarService
 
         $event = $service->events->insert('primary', $event, array('sendNotifications' => true));
 
-        return $event->htmlLink;
+        return $event;
     }
 }

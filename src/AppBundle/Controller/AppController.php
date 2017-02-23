@@ -44,8 +44,28 @@ class AppController extends Controller
                         "id" => $team->getTeamId(),
                         "name" => $team_details->getName(),
                     ));
+
+                    $api_events = $em->getRepository('AppBundle:Event')->findByTeamId($team->getTeamId());
+                    $googleCalendarService = $this->get('app.service.google_calendar_api');
+                    $events = [];
+                    foreach ($api_events as $event) {
+                        $event_details = $googleCalendarService->getEvent($event->getCreatorId(), $event->getGoogleCalendarId());
+                        array_push($events, [
+                            "title" => $event_details->summary,
+                            "teamName" => "Yolo",
+                            "location" => $event_details->location,
+                            "startDate" => $event_details->start->date,
+                        ]);
+                        // echo '<pre>';
+                        // var_dump($event_details);
+                        // echo '</pre>';
+                    }
                 }
             }
+
+            echo '<pre>';
+            var_dump($events);
+            echo '</pre>';
 
             // Create a new team form
             $team = new Team();
