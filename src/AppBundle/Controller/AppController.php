@@ -44,6 +44,21 @@ class AppController extends Controller
                         "id" => $team->getTeamId(),
                         "name" => $team_details->getName(),
                     ));
+
+                    $api_events = $em->getRepository('AppBundle:Event')->findByTeamId($team->getTeamId());
+
+                    $googleCalendarService = $this->get('app.service.google_calendar_api');
+                    $events = [];
+                    foreach ($api_events as $event) {
+                        $event_details = $googleCalendarService->getEvent($event->getCreatorId(), $event->getGoogleCalendarId());
+                        array_push($events, [
+                            "title" => $event_details->summary,
+                            "teamName" => $team_details->getName(),
+                            "location" => $event_details->location,
+                            "startDate" => date("d/m - G\hi", strtotime($event_details->start->dateTime)),
+                            "endDate" => $event_details->end->dateTime
+                        ]);
+                    }
                 }
             }
 
@@ -70,8 +85,14 @@ class AppController extends Controller
                 $members = $form->get('members')->getData();
                 $members = json_decode($members);
 
+                // Security checks
                 if (count($members) < 1) {
                     throw new \Exception("Sorry but you can't create a team if you are alone :( Go make friends !");
+                }
+                if (count($members) == 1) {
+                    if ($members[0] == $session->get('userEmail')) {
+                        throw new \Exception("Nope, you can't create a team with only yourself, selfish !");
+                    }
                 }
 
                 // Create the team
@@ -127,7 +148,8 @@ class AppController extends Controller
                 'firstName' => $session->get('userFirstName'),
                 'team' => $team,
                 'form' => $form->createView(),
-                'user_teams' => $user_teams
+                'user_teams' => $user_teams,
+                'events' => $events
             ));
         }
     }
