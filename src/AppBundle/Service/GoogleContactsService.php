@@ -15,6 +15,7 @@ class GoogleContactsService
     public function getAllEmails($accessToken)
     {
         $client = $this->container->get('happyr.google.api.client');
+        
         $client->setAccessToken($accessToken);
 
         try {
