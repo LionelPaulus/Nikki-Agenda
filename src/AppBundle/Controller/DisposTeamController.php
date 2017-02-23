@@ -18,6 +18,6 @@ class DisposTeamController extends Controller
         $findDisposTeam = $this->get('app.service.disposteams');
         $dispos_teams = $findDisposTeam->retrieveDisposTeam($start_time, $end_time, $id_team, $duration);
 
-        return new Response($dispos_teams);
+        return $dispos_teams;
     }
 }

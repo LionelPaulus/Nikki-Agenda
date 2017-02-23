@@ -36,6 +36,7 @@ class DisposTeamService
 
         dump($team_busy_slots);
         die();
+
         $free_time_slots = array();
 
         $count = count($team_busy_slots)-1;
@@ -53,7 +54,6 @@ class DisposTeamService
             }
         }
 
-        dump($free_time_slots);
         return new JsonResponse($free_time_slots);
     }
 }

@@ -17,7 +17,7 @@ class BusySlotsService
     {
 
         // Set google client
-        $client = $this->container->get('happyr.google.api.client');
+        $client = new \Google_Client();
 
         $em = $this->container->get('doctrine')->getEntityManager();
         // Get user id
@@ -61,7 +61,7 @@ class BusySlotsService
         $end_time = date('c', strtotime($end_time->format('Y-m-d H:i:sP')));
 
         // Retrieve calendars from user
-        $calendar = new \Google_Service_Calendar($client->getGoogleClient());
+        $calendar = new \Google_Service_Calendar($client);
         // $list = $calendar->calendarList->listCalendarList();
 
         // Create freebusy request
@@ -93,5 +93,4 @@ class BusySlotsService
 
         return $events;
     }
-
 }
