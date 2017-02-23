@@ -140,11 +140,11 @@ function formCreation(){
                   $('.Popup--event-choose').append(
                       "<li><div class='Popup--event-choose-title'>"+fromDateData+" to "+toDateData+"</div>"
                       +"<div><input required type='radio' id='"+"meeting-"+i+"' name='event_id'>"
-                      +"<label for='"+"meeting-"+i+"'>Choisir</label></div></li>"
+                      +"<label for='"+"meeting-"+i+"'>Choose</label></div></li>"
                   );
                 };
 
-                $this.attr('id','formValidation');   
+                $this.attr('id','formValidation');
                 formValidation(result, formData);
             }, 1000);
           },
@@ -152,7 +152,7 @@ function formCreation(){
             // failed request; give feedback to user
             console.log('error');
           }
-        });    
+        });
     });
 };
 
