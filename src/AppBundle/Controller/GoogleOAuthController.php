@@ -16,7 +16,7 @@ class GoogleOAuthController extends Controller
       \Google_Service_People::CONTACTS_READONLY
     ];
     /**
-     * @Route("/oauth/google/auth")
+     * @Route("/oauth/google/auth", name="googleAuth")
      */
     public function getAuthenticationCodeAction()
     {
@@ -32,6 +32,7 @@ class GoogleOAuthController extends Controller
         ));
 
         // Request access to offline access
+        // $client->getGoogleClient()->setApprovalPrompt("force");
         $client->getGoogleClient()->setAccessType('offline');
 
         // Send the user to complete their part of the OAuth

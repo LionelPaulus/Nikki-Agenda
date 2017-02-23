@@ -2,6 +2,7 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle\Entity\Event;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -13,22 +14,11 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
-    }
+        if (empty($request->getSession()->get('userId'))) {
+            // Check if user is logged, if not redirect to googleAuth
+            return $this->redirectToRoute('googleAuth');
+        }
 
-    /**
-     * @Route("/success", name="success")
-     */
-    public function userInfos(Request $request)
-    {
-      die($request);
-
-        // replace this example code with whatever you need
-        return $this->render('user.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
+        return $this->redirectToRoute('app');
     }
 }

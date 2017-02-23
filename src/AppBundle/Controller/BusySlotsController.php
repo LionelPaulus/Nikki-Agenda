@@ -10,12 +10,13 @@ class BusySlotsController extends Controller
 {
 
     /**
-     * @Route("/dispos/{start_time}/{end_time}")
+     * @Route("/dispos/{start_time}/{end_time}/{id_user}")
      */
-    public function findBusySlots($start_time, $end_time)
+    public function findBusySlots($start_time, $end_time, $id_user)
     {
         $BusySlotsService = $this->get('app.service.busyslots');
-        $busy_slots = $BusySlotsService->retrieveBusySlots($start_time, $end_time);
+        $busy_slots = $BusySlotsService->retrieveBusySlots($start_time, $end_time, $id_user);
+
         return new JsonResponse($busy_slots);
     }
 }
