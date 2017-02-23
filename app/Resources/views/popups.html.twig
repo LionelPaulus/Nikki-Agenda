@@ -31,7 +31,7 @@
   <h3 class="Popup-title">Meeting creation</h3>
   <div class="Popup-info">Nikki Agenda</div>
 
-  <form action="/api/getSlots" method="POST" id="formCreation">    
+  <form action="/api/getSlots" method="POST" id="formCreation">
     <div class="Popup--event-container">
       <div class="Popup--event-title">
         <input autofocus required type="text" placeholder="Enter here a name for your event" name="eventTitle">
@@ -48,14 +48,15 @@
         <output id="duration">60</output>
       </div>
       <div class="Popup--event-place">
-        <div class="Popup--event-place-title">Place</div> 
+        <div class="Popup--event-place-title">Place</div>
         <input required type="text" placeholder="Room 12" name="location">
       </div>
       <div class="Popup--event-team">
         <div class="Popup--event-team-title">Team</div>
         <select required name="teamId">
-          <option value="56" selected>Team 1</option>
-          <option value="25">Team 2</option>
+          {% for team in user_teams %}
+            <option value="{{team.id}}">{{team.name}}</option>
+          {% endfor %}
         </select>
       </div>
     </div>
@@ -88,7 +89,7 @@
           </select>
         </div>
       </div>
-      
+
     </div>
     <input type="submit" name="formTeam_submit" value="SUBMIT" class="Popup-submit">
   </form>
