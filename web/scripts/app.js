@@ -202,12 +202,12 @@ function formValidation(){
 
             console.log('error');
           }
-        });    
+        });
     });
 };
 
 // Accept or Decline a meeting
-formInvite();
+//formInvite();
 function formInvite(){
     $('.Card-footer a').click(function(e){
       e.preventDefault();
@@ -216,7 +216,7 @@ function formInvite(){
       $('body').css('overflow','hidden');
       $('.background-screen').fadeIn();
       $('.Popup--invite').fadeIn();
-    
+
       $.ajax({
         //type: post,
         url: "test.php",
