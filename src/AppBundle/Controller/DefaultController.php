@@ -26,10 +26,10 @@ class DefaultController extends Controller
                 'dateTime' => '2017-02-23T17:00:00',
                 'timeZone' => 'Europe/Berlin',
               ),
-            //   'attendees' => array(
-            //     array('email' => 'lpage@example.com'),
-            //     array('email' => 'sbrin@example.com'),
-            //   ),
+              // 'attendees' => array(
+              //   array('email' => 'lpage@example.com'),
+              //   array('email' => 'sbrin@example.com'),
+              // ),
         ];
         $calendar_event = $googleCalendarService->createEvent(10, $datas);
 
@@ -42,14 +42,7 @@ class DefaultController extends Controller
         $em->persist($event);
         $em->flush();
 
-        echo '<pre>';
-        var_dump($event);
-        echo '</pre>';
-
-        die();
         // replace this example code with whatever you need
-        return $this->render('index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.root_dir').'/..').DIRECTORY_SEPARATOR,
-        ]);
+        return $this->render('index.html.twig', $datas);
     }
 }

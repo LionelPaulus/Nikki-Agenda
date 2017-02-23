@@ -12,4 +12,11 @@
     </ul>
     <h1>Create a new team</h1>
     {% include 'team/new.html.twig' %}
+
+    {% for meeting in meetings %}
+      {{meeting.name}}
+    {% endfor %}
+
+    {{meetings}}
+
 {% endblock %}

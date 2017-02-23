@@ -46,26 +46,23 @@ class AppController extends Controller
                     ));
 
                     $api_events = $em->getRepository('AppBundle:Event')->findByTeamId($team->getTeamId());
+
                     $googleCalendarService = $this->get('app.service.google_calendar_api');
                     $events = [];
                     foreach ($api_events as $event) {
                         $event_details = $googleCalendarService->getEvent($event->getCreatorId(), $event->getGoogleCalendarId());
+                        dump($event_details);
+                        // die();
                         array_push($events, [
                             "title" => $event_details->summary,
-                            "teamName" => "Yolo",
+                            "teamName" => $team_details->getName(),
                             "location" => $event_details->location,
-                            "startDate" => $event_details->start->date,
+                            "startDate" => $event_details->start->dateTime,
+                            "endDate" => $event_details->end->dateTime
                         ]);
-                        // echo '<pre>';
-                        // var_dump($event_details);
-                        // echo '</pre>';
                     }
                 }
             }
-
-            echo '<pre>';
-            var_dump($events);
-            echo '</pre>';
 
             // Create a new team form
             $team = new Team();
@@ -153,7 +150,8 @@ class AppController extends Controller
                 'firstName' => $session->get('userFirstName'),
                 'team' => $team,
                 'form' => $form->createView(),
-                'user_teams' => $user_teams
+                'user_teams' => $user_teams,
+                'meetings' => json_encode($events)
             ));
         }
     }
@@ -189,6 +187,23 @@ class AppController extends Controller
                     "email" => $member_details->getEmail()
                 ));
             }
+
+            $meetings = [
+                'summary' => 'Réunion pyjama',
+                  'location' => '4 Rue du Progrès',
+                  'start' => array(
+                    'dateTime' => '2017-02-23T09:00:00',
+                    'timeZone' => 'Europe/Berlin',
+                  ),
+                  'end' => array(
+                    'dateTime' => '2017-02-23T17:00:00',
+                    'timeZone' => 'Europe/Berlin',
+                  ),
+                  // 'attendees' => array(
+                  //   array('email' => 'lpage@example.com'),
+                  //   array('email' => 'sbrin@example.com'),
+                  // ),
+            ];
 
             return $this->render('AppBundle:App:team.html.twig', array(
                 'team' => $team,
