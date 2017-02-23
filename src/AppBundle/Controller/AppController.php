@@ -149,7 +149,8 @@ class AppController extends Controller
                 'team' => $team,
                 'form' => $form->createView(),
                 'user_teams' => $user_teams,
-                'events' => $events
+                'events' => $events,
+                'counter_events' => count($events)
             ));
         }
     }
