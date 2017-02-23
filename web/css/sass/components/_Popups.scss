@@ -1,8 +1,14 @@
 .Popup {
-  transition: 1s ease;
+  //transition: 1s ease;
   overflow: hidden;
   max-height: 0%;
   width: 0px;
+  background-color: #fff;
+  border: 2px solid #680101;
+  max-height: 100%;
+  width: 790px;
+  z-index: 10;
+  display: none;
   &::before {
     content:url('../img/skin/pin.svg');
     display: block;
@@ -13,11 +19,6 @@
   left: 50%; top: 50%;
   transform: translateX(-50%) translateY(-50%);
   &--open {
-    border: 2px solid #680101;
-    max-height: 100%;
-    width: 790px;
-    z-index: 10;
-    background-color: #fff;
   }
   &-title {
     font-size: 26px;

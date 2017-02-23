@@ -1,8 +1,8 @@
 {% block header %}
     {% include 'menu.html.twig' %}
-    <form class="Creation BackLighter" action="#" method="post">
-        <input type="text" name="MeetingName" placeholder="Meeting's Name">
-        <button type="submit" name="Create" class="Creation-button BackDarker">
+    <form class="Creation BackLighter" id="homeInput">
+        <input autofocus type="text" name="homeInput_title" placeholder="Meeting's Name">
+        <button type="submit" class="Creation-button BackDarker">
             <img src="{{ asset('images/create.png') }}" alt="Create">
             <h6>Create</h6>
         </button>
