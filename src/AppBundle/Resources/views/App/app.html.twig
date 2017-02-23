@@ -4,6 +4,12 @@
 
 {% block body %}
     <h1>Welcome in the app {{ firstName }} :)</h1>
+    <h1>My events</h1>
+    <ul>
+        {% for event in events %}
+            <li>{{event.title}} - {{event.teamName}} - {{event.location}} - {{event.startDate}}</a></li>
+        {% endfor %}
+    </ul>
     <h1>My teams</h1>
     <ul>
         {% for team in user_teams %}
@@ -12,11 +18,5 @@
     </ul>
     <h1>Create a new team</h1>
     {% include 'team/new.html.twig' %}
-
-    {% for meeting in meetings %}
-      {{meeting.name}}
-    {% endfor %}
-
-    {{meetings}}
 
 {% endblock %}

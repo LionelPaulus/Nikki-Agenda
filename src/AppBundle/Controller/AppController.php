@@ -51,13 +51,11 @@ class AppController extends Controller
                     $events = [];
                     foreach ($api_events as $event) {
                         $event_details = $googleCalendarService->getEvent($event->getCreatorId(), $event->getGoogleCalendarId());
-                        dump($event_details);
-                        // die();
                         array_push($events, [
                             "title" => $event_details->summary,
                             "teamName" => $team_details->getName(),
                             "location" => $event_details->location,
-                            "startDate" => $event_details->start->dateTime,
+                            "startDate" => date("d/m - G\hi", strtotime($event_details->start->dateTime)),
                             "endDate" => $event_details->end->dateTime
                         ]);
                     }
@@ -151,7 +149,7 @@ class AppController extends Controller
                 'team' => $team,
                 'form' => $form->createView(),
                 'user_teams' => $user_teams,
-                'meetings' => json_encode($events)
+                'events' => $events
             ));
         }
     }
@@ -187,23 +185,6 @@ class AppController extends Controller
                     "email" => $member_details->getEmail()
                 ));
             }
-
-            $meetings = [
-                'summary' => 'Réunion pyjama',
-                  'location' => '4 Rue du Progrès',
-                  'start' => array(
-                    'dateTime' => '2017-02-23T09:00:00',
-                    'timeZone' => 'Europe/Berlin',
-                  ),
-                  'end' => array(
-                    'dateTime' => '2017-02-23T17:00:00',
-                    'timeZone' => 'Europe/Berlin',
-                  ),
-                  // 'attendees' => array(
-                  //   array('email' => 'lpage@example.com'),
-                  //   array('email' => 'sbrin@example.com'),
-                  // ),
-            ];
 
             return $this->render('AppBundle:App:team.html.twig', array(
                 'team' => $team,
