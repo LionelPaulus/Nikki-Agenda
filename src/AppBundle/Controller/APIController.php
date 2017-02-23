@@ -3,6 +3,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Event;
+use AppBundle\Entity\Team_Members;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -25,34 +26,80 @@ class APIController extends Controller
     public function createEvent(Request $request)
     {
         // Check if POST has data
-        if (isset($_POST)) {
+        if (empty($_POST)) {
             $this->response->code = "404";
             $this->response->message = "No POST content received";
             return new JsonResponse($this->response);
         }
 
-        // Check if user is logged
-        if (empty($request->getSession()->get('userId'))) {
-            $this->response->code = "401";
-            $this->response->message = "Unauthorized";
-            return new JsonResponse($this->response);
-        }
+        // // Check if user is logged
+        // if (empty($request->getSession()->get('userId'))) {
+        //     $this->response->code = "401";
+        //     $this->response->message = "Unauthorized";
+        //     return new JsonResponse($this->response);
+        // }
+
+        $request->getSession()->set('userId', 10);
 
         // Check data sent
         $datas = [
-            "teamId"
+            "teamId",
+            "eventTitle",
+            "fromDate",
+            "toDate"
         ];
-        if ((empty($_POST[$data]))||(is_nan($_POST[$data]))) {
-            $this->response->code = "404";
-            $this->response->message = "Missing ".$data." value or NAN";
-            return new JsonResponse($this->response);
+        foreach ($datas as $data) {
+            if (empty($_POST[$data])) {
+                $this->response->code = "404";
+                $this->response->message = "Missing ".$data." value or NAN";
+                return new JsonResponse($this->response);
+            }
+        }
+
+        // Convert timestamp to google friendly date
+        $_POST["fromDate"] = date('Y-m-d\TH:i:s', $_POST["fromDate"]);
+        $_POST["toDate"] = date('Y-m-d\TH:i:s', $_POST["toDate"]);
+
+        // Get team members
+        $attendees = [];
+        $em = $this->getDoctrine()->getEntityManager();
+        $team_members = $em->getRepository('AppBundle:Team_Members')->findByTeamId($_POST["teamId"]);
+        foreach ($team_members as $member) {
+            $member_details = $em->getRepository('AppBundle:User')->findOneById($member->getUserId());
+            if ($request->getSession()->get('userEmail') != $member_details->getEmail()) {
+                array_push($attendees, array(
+                    "email" => $member_details->getEmail()
+                ));
+            }
+        }
+
+        // Location security
+        if (empty($_POST["location"])) {
+            $_POST["location"] = "";
         }
 
         // Create the event
+        $event_data = [
+            'summary' => $_POST["eventTitle"],
+              'location' => $_POST["location"],
+              'start' => array(
+                'dateTime' => $_POST["fromDate"],
+                'timeZone' => 'Europe/Berlin',
+              ),
+              'end' => array(
+                'dateTime' => $_POST["toDate"],
+                'timeZone' => 'Europe/Berlin',
+              ),
+              'attendees' => $attendees,
+        ];
+
+        $googleCalendarService = $this->get('app.service.google_calendar_api');
+        $calendar_event = $googleCalendarService->createEvent($request->getSession()->get('userId'), $event_data);
+
         $event = new Event();
         $event->setTeamId($_POST["teamId"]);
         $event->setCreatorId($request->getSession()->get('userId'));
-        $event->setGoogleCalendarId("999");
+        $event->setGoogleCalendarId($calendar_event->id);
 
         $em = $this->getDoctrine()->getManager();
         $em->persist($event);
@@ -69,7 +116,7 @@ class APIController extends Controller
     public function getSlots(Request $request)
     {
         // Check if POST has data
-        if (isset($_POST)) {
+        if (empty($_POST)) {
             $this->response->code = "404";
             $this->response->message = "No POST content received";
             return new JsonResponse($this->response);
