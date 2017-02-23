@@ -1,8 +1,8 @@
 $('.members-input').textext({
 	plugins : 'tags prompt focus autocomplete ajax arrow',
-	prompt : 'Add one...',
+	prompt : 'Type an email...',
 	ajax : {
-		url : 'app/getMembersSuggestions.json',
+		url : 'api/getMembersSuggestions',
 		dataType : 'json',
 		cacheResults : true,
         typeDelay : 1,

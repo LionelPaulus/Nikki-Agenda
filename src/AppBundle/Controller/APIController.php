@@ -96,18 +96,25 @@ class APIController extends Controller
         $googleCalendarService = $this->get('app.service.google_calendar_api');
         $calendar_event = $googleCalendarService->createEvent($request->getSession()->get('userId'), $event_data);
 
-        $event = new Event();
-        $event->setTeamId($_POST["teamId"]);
-        $event->setCreatorId($request->getSession()->get('userId'));
-        $event->setGoogleCalendarId($calendar_event->id);
+        try {
+            // Create the event
+            $event = new Event();
+            $event->setTeamId($_POST["teamId"]);
+            $event->setCreatorId($request->getSession()->get('userId'));
+            $event->setGoogleCalendarId($calendar_event->id);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->persist($event);
-        $em->flush();
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($event);
+            $em->flush();
 
-        $this->response->response = true;
+            $this->response->response = true;
 
-        return new JsonResponse($this->response);
+            return new JsonResponse($this->response);
+        } catch (Exception $e) {
+            $this->response->code = "500";
+            $this->response->message = "Error: ".$e;
+            return new JsonResponse($this->response);
+        }
     }
 
     /**
@@ -144,24 +151,68 @@ class APIController extends Controller
             }
         }
 
-        $fakeDates = [
-            "events" => []
-        ];
-        array_push($fakeDates["events"], [
-            "name" => "lundi 19 - 10h",
-            "id" => 1
-        ]);
-        array_push($fakeDates["events"], [
-            "name" => "mardi 20 - 15h",
-            "id" => 2
-        ]);
-        array_push($fakeDates["events"], [
-            "name" => "mercredi 20 - 15h",
-            "id" => 3
-        ]);
+        try {
+            $fakeDates = [
+                "events" => []
+            ];
+            array_push($fakeDates["events"], [
+                "name" => "lundi 19 - 10h",
+                "fromDate" => "9999",
+                "toDate" => "9999",
+            ]);
+            array_push($fakeDates["events"], [
+                "name" => "mardi 20 - 15h",
+                "fromDate" => "9999",
+                "toDate" => "9999",
+            ]);
+            array_push($fakeDates["events"], [
+                "name" => "mercredi 20 - 15h",
+                "fromDate" => "9999",
+                "toDate" => "9999",
+            ]);
 
-        $this->response->response = $fakeDates;
+            $this->response->response = $fakeDates;
 
-        return new JsonResponse($this->response);
+            return new JsonResponse($this->response);
+        } catch (Exception $e) {
+            $this->response->code = "500";
+            $this->response->message = "Error: ".$e;
+            return new JsonResponse($this->response);
+        }
+    }
+
+    /**
+     * @Route("/api/getMembersSuggestions", name="getMembersSuggestions")
+     */
+    public function getMembersSuggestions(Request $request)
+    {
+        $session = $request->getSession();
+
+        if (empty($session->get('userGoogleAuth'))) {
+            // Check if user is logged, if not redirect to homepage
+            return $this->redirectToRoute('homepage');
+        } else {
+            // User is logged
+
+            $contactsSuggestions = [];
+
+            // Get all registered users
+            $em = $this->getDoctrine()->getEntityManager();
+            $users = $em->getRepository('AppBundle:User')->findAll();
+            foreach ($users as $user) {
+                array_push($contactsSuggestions, $user->getEmail());
+            }
+
+            // Get user Google Contacts emails
+            $googleContactsService = $this->get('app.service.google_contacts_api');
+            $googleContacts = $googleContactsService->getAllEmails($session->get('userGoogleAuth'));
+            if (count($googleContacts > 0)) {
+                foreach ($googleContacts as $googleContact) {
+                    array_push($contactsSuggestions, $googleContact);
+                }
+            }
+
+            return new JsonResponse($contactsSuggestions);
+        }
     }
 }
