@@ -8,7 +8,11 @@
     <h2>Team members</h2>
     <ul>
         {% for member in team.members %}
-            <li>{{member.firstName}} {{member.lastName}}</li>
+            {% if (member.firstName or member.lastName) is empty %}
+                <li>{{member.email}}</li>
+            {% else %}
+                <li>{{member.firstName}} {{member.lastName}}</li>
+            {% endif %}
         {% endfor %}
     </ul>
 {% endblock %}
