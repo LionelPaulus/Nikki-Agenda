@@ -26,3 +26,7 @@ services:
 
     app.service.superpositionkiller:
         class: AppBundle\Service\SuperpositionKillerService
+
+    app.service.google_calendar_api:
+        class: AppBundle\Service\GoogleCalendarService
+        arguments: ['@service_container']
