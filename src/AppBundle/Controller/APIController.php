@@ -32,14 +32,12 @@ class APIController extends Controller
             return new JsonResponse($this->response);
         }
 
-        // // Check if user is logged
-        // if (empty($request->getSession()->get('userId'))) {
-        //     $this->response->code = "401";
-        //     $this->response->message = "Unauthorized";
-        //     return new JsonResponse($this->response);
-        // }
-
-        $request->getSession()->set('userId', 10);
+        // Check if user is logged
+        if (empty($request->getSession()->get('userId'))) {
+            $this->response->code = "401";
+            $this->response->message = "Unauthorized";
+            return new JsonResponse($this->response);
+        }
 
         // Check data sent
         $datas = [
@@ -130,13 +128,11 @@ class APIController extends Controller
         }
 
         // Check if user is logged
-        // if (empty($request->getSession()->get('userId'))) {
-        //     $this->response->code = "401";
-        //     $this->response->message = "Unauthorized";
-        //     return new JsonResponse($this->response);
-        // }
-
-        $request->getSession()->set('userId', 10);
+        if (empty($request->getSession()->get('userId'))) {
+            $this->response->code = "401";
+            $this->response->message = "Unauthorized";
+            return new JsonResponse($this->response);
+        }
 
         // Check data sent
         $datas = [
@@ -157,7 +153,7 @@ class APIController extends Controller
 
         $findDisposTeam = $this->get('app.service.disposteams');
         $dispos_teams = $findDisposTeam->retrieveDisposTeam($_POST["fromDate"], $_POST["toDate"], $_POST["teamId"], $_POST["duration"]);
-        
+
         try {
             $freeSlots = [
                 "events" => []
