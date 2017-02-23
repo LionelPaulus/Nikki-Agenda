@@ -1,22 +1,33 @@
-{% extends "::base.html.twig" %}
+{% extends 'base.html.twig' %}
 
-{% block title %}AppBundle:App:app{% endblock %}
+{% block title %}Nikki Agenda{% endblock %}
 
 {% block body %}
-    <h1>Welcome in the app {{ firstName }} :)</h1>
-    <h1>My events</h1>
-    <ul>
-        {% for event in events %}
-            <li>{{event.title}} - {{event.teamName}} - {{event.location}} - {{event.startDate}}</a></li>
-        {% endfor %}
-    </ul>
-    <h1>My teams</h1>
-    <ul>
-        {% for team in user_teams %}
-            <li><a href="app/{{team.id}}">{{team.name}}</a></li>
-        {% endfor %}
-    </ul>
-    <h1>Create a new team</h1>
-    {% include 'team/new.html.twig' %}
+
+    {% include 'header.html.twig' %}
+
+    <div class="Container">
+        {% include 'sidebar.html.twig' %}
+
+        <div class="Upcoming">
+            <div class="Upcoming-header">
+                <h2>Upcoming meetings</h2>
+                <h4 class="FontLighter">1 Meeting pending</h4>
+            </div>
+            <div class="Upcoming-content">
+                <h5>This week</h5>
+                <div class="Upcoming-content-line"></div>
+                <ul>
+                    {% for event in events %}
+                        {% include 'card.html.twig' %}
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="background-screen"></div>
+
+    {% include 'popups.html.twig' %}
+    {% include 'footer.html.twig' %}
 
 {% endblock %}

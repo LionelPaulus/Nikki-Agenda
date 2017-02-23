@@ -1,0 +1,23 @@
+{% block sidebar %}
+    <div class="SideBar BackLighter">
+        <div class="SideBar-title">
+            <h3>dashboard</h3>
+        </div>
+        <ul class="SideBar-content">
+            <li>
+                <h4>new team</h4>
+                <img src="{{ asset('images/plus.png') }}" alt="Add">
+            </li>
+            <li><div></div></li>
+            {% for team in user_teams %}
+                <li>
+                    <p>{{team.name}}</p>
+                    <img src="{{ asset('images/arrow.png') }}" alt="See">
+                </li>
+            {% endfor %}
+        </ul>
+        <div class="SideBar-footer">
+            <h3 class="BackDarker">notifications</h3>
+        </div>
+    </div>
+{% endblock %}

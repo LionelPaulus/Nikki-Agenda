@@ -1,0 +1,16 @@
+{% block card %}
+    <li class="Card Border">
+        <div class="Card-header">
+            <div class="BackDarker"></div>
+            <h6>{{event.teamName}}</h6>
+            <h5>{{event.startDate}}</h5>
+        </div>
+        <div class="Card-content">
+            <h3>{{event.title}}</h3>
+            <p>{{event.location}}</p>
+        </div>
+        <div class="Card-footer BackLighter">
+            <a href="{{event.link}}" target="_blank">More</a>
+        </div>
+    </li>
+{% endblock %}

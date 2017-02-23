@@ -1,0 +1,77 @@
+<div class="Popup Popup--invite">
+  <h3 class="Popup-title">Meeting invite</h3>
+  <div class="Popup-info"><div class="Popup-info-more"></div></div>
+  <form action="#" method="POST" id="formInvite">
+    <div class="Popup--invite-container">
+      <h4 class="Popup--invite-title"></h4>
+      <div class="Popup--invite-date"></div>
+      <div class="Popup--invite-availability">
+        <div>
+          <input required checked type="radio" id="available" name="availability" value="available">
+          <label for="available">Available</label>
+        </div>
+        <div>
+          <input required type="radio" id="occupied" name="availability" value="occupied">
+          <label for="occupied">Occupied</label>
+        </div>
+      </div>
+      <div class="Popup--invite-members">
+        <h4 class="Popup--invite-members-title">Members invited</h4>
+        <div class="Popup--invite-members-subtitle">Name/Email</div>
+        <div class="Popup--invite-members-list">
+        </div>
+      </div>
+    </div>
+    <input type="submit" name="formInvite_submit" value="SUBMIT" class="Popup-submit">
+  </form>
+  <div class="loading"><img src="/img/skin/loader1.gif" alt="Loading..." /></div>
+</div>
+
+<div class="Popup Popup--event">
+  <h3 class="Popup-title">Meeting creation</h3>
+  <div class="Popup-info">Nikki Agenda</div>
+
+  <form action="/api/getSlots" method="POST" id="formCreation">
+    <div class="Popup--event-container">
+      <div class="Popup--event-title">
+        <input autofocus required type="text" placeholder="Enter here a name for your event" name="eventTitle">
+      </div>
+      <div class="Popup--event-subtitle">Pick the time slot that suits you more</div>
+      <div class="Popup--event-date">
+        <input required type="date" name="fromDate">
+        <span>to</span>
+        <input required type="date" name="toDate">
+      </div>
+      <div class="Popup--event-time">
+        <div class="Popup--event-time-title">Duration (min)</div>
+        <input required type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="60" name="duration">
+        <output id="duration">60</output>
+      </div>
+      <div class="Popup--event-place">
+        <div class="Popup--event-place-title">Place</div>
+        <input required type="text" placeholder="Room 12" name="location">
+      </div>
+      <div class="Popup--event-team">
+        <div class="Popup--event-team-title">Team</div>
+        <select required name="teamId">
+          {% for team in user_teams %}
+            <option value="{{team.id}}">{{team.name}}</option>
+          {% endfor %}
+        </select>
+      </div>
+    </div>
+    <input type="submit" name="formCreation_submit" value="SUBMIT" class="Popup-submit">
+  </form>
+</div>
+
+<div class="Popup Popup--team">
+  <h3 class="Popup-title">Create a team</h3>
+  <div class="Popup-info">Nikki Agenda</div>
+
+
+    <div class="Popup--team-container">
+
+      {% include '/team/new.html.twig' %}
+
+    </div>
+</div>

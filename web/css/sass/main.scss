@@ -11,9 +11,25 @@
 // Components
 @import 'components/Component';
 @import 'components/Popups';
+@import 'components/Header';
+@import 'components/Home';
+@import 'components/Footer';
+@import 'components/Loader';
+@import 'components/Background-screen';
+
 
 // Other
 
 * {
 	//color: red !important;
+}
+
+body {
+    //margin: 1% 13% 0 13%;
+    width: 1200px;
+    margin: 50px auto;
+}
+
+.SideBar-content li:nth-child(1) {
+	cursor: pointer;
 }
