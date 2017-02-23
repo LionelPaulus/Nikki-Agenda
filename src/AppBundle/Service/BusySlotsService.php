@@ -15,6 +15,7 @@ class BusySlotsService
 
     public function retrieveBusySlots($start_time, $end_time, $id_user)
     {
+
         // Set google client
         $client = $this->container->get('happyr.google.api.client');
 
@@ -28,10 +29,34 @@ class BusySlotsService
         $client->setAccessToken($user_auth);
 
         // Format datetime so it is usable by Google Freebusy api
-
         $start_time = new \DateTime($start_time, new \DateTimeZone('Europe/Berlin'));
         $end_time = new \DateTime($end_time, new \DateTimeZone('Europe/Berlin'));
 
+        // $interval = $start_time->diff($end_time);
+        // $interval = $interval->days;
+        //
+        // $morning_clamping = array();
+        // $night_clamping = array();
+        //
+        // for ($i=0; $i < $interval + 1; $i++){
+        //   $day = '+'.$i.' day';
+        //   $clamped_day = new \DateTime($start_time->format('Y-m-d').$day);
+        //   $morning_clamping[$i]["start"] = date_timestamp_get(date_time_set($clamped_day, 00, 00, 00));
+        //   $morning_clamping[$i]["end"] = date_timestamp_get(date_time_set($clamped_day, 10, 00, 00));
+        // }
+
+        // dump($morning_clamping);
+        // die();
+
+        // for ($i=0; $i < $interval + 1; $i++){
+        //   $day = '+'.$i.' day';
+        //   $clamped_day = new \DateTime($start_time->format('Y-m-d').$day);
+        //   $night_clamping[$i]["start"] = date_timestamp_get(date_time_set($clamped_day, 20, 00, 00));
+        //   $night_clamping[$i]["end"] = date_timestamp_get(date_time_set($clamped_day, 22, 00, 00));
+        // }
+
+        // dump($morning_clamping);
+        // die();
         $start_time = date('c', strtotime($start_time->format('Y-m-d H:i:sP')));
         $end_time = date('c', strtotime($end_time->format('Y-m-d H:i:sP')));
 
@@ -48,10 +73,10 @@ class BusySlotsService
         $item->setId('primary');
         $freebusy->setItems(array($item));
         $busy_slots = $calendar->freebusy->query($freebusy);
-
         // Fill events array with busy slots retrieved from user calendar
         $events = array();
         $i = 0;
+
         foreach ($busy_slots["calendars"]["primary"]["modelData"]["busy"] as $busy) {
             $events[$i] = $busy;
             $i ++ ;
@@ -68,4 +93,5 @@ class BusySlotsService
 
         return $events;
     }
+
 }
