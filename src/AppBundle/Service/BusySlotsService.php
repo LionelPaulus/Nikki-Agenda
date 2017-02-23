@@ -26,24 +26,15 @@ class BusySlotsService
         $user_auth = $user->getGoogleAuth();
 
         // $accessToken = $this->container->get('session')->get('userGoogleAuth');
-        $client->setAccessToken($user_auth);
+        // $client->setAccessToken($user_auth);
 
+        // $AccessTokenService = $this->container->get('app.service.accesstoken');
+        // $accessToken = $AccessTokenService->getAccessToken($id_user);
+
+        $client->setAccessToken($user_auth);
         // Format datetime so it is usable by Google Freebusy api
         $start_time = new \DateTime($start_time, new \DateTimeZone('Europe/Berlin'));
         $end_time = new \DateTime($end_time, new \DateTimeZone('Europe/Berlin'));
-
-        // $interval = $start_time->diff($end_time);
-        // $interval = $interval->days;
-        //
-        // $morning_clamping = array();
-        // $night_clamping = array();
-        //
-        // for ($i=0; $i < $interval + 1; $i++){
-        //   $day = '+'.$i.' day';
-        //   $clamped_day = new \DateTime($start_time->format('Y-m-d').$day);
-        //   $morning_clamping[$i]["start"] = date_timestamp_get(date_time_set($clamped_day, 00, 00, 00));
-        //   $morning_clamping[$i]["end"] = date_timestamp_get(date_time_set($clamped_day, 10, 00, 00));
-        // }
 
         // dump($morning_clamping);
         // die();
@@ -91,6 +82,9 @@ class BusySlotsService
             $i ++;
         }
 
+        // $events = array_merge($morning_clamping, $events);
+        // dump($events);
+        // die();
         return $events;
     }
 }

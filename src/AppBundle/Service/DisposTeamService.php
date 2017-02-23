@@ -26,34 +26,79 @@ class DisposTeamService
 
         foreach ($users as $user) {
             $id_user = $user->getUserId();
-            // dump($id_user);
             $user_busy = $findBusySlots->retrieveBusySlots($start_time, $end_time, $id_user);
-            // dump($user_busy);
             foreach ($user_busy as $busy) {
                 array_push($team_busy_slots, $busy);
             }
         }
 
+        $start_time = new \DateTime($start_time);
+        $end_time = new \DateTime($end_time);
+
+        $interval = $start_time->diff($end_time);
+        $interval = $interval->days;
+
+        $morning_clamping = array();
+
         dump($team_busy_slots);
-        die();
 
-        $free_time_slots = array();
+        for ($i=0; $i < $interval + 1; $i++) {
+            $day = '+'.$i.' day';
+            $clamped_day = new \DateTime($start_time->format('Y-m-d').$day);
+            // array_push($team_busy_slots,
+            // [
+            //   "start" => date_timestamp_get(date_time_set($clamped_day, 00, 00, 00)),
+            //   "end" => date_timestamp_get(date_time_set($clamped_day, 10, 00, 00))
+            // ]);
+        }
 
-        $count = count($team_busy_slots)-1;
-        $i = 0;
+        usort($team_busy_slots, function ($a, $b) {
+            $ad = $a["start"];
+            $bd = $b["start"];
+            if ($ad == $bd) {
+                return 0;
+            }
+
+            return $ad < $bd ? -1 : 1;
+        });
 
         foreach ($team_busy_slots as $event) {
+            dump(date("c", $event['start']));
+            // dump(date("c", $event['end']));
+        }
+
+        dump(json_encode($team_busy_slots));
+        die();
+
+        $findBusySlots = $this->container->get('app.service.superpositionkiller');
+        $team_busy = $findBusySlots->superpositionKiller($team_busy_slots);
+        dump($team_busy);
+        foreach ($team_busy as $busy) {
+            dump(date('c', $busy["start"]));
+        }
+        die();
+        // $team_busy = $team_busy_slots;
+        $free_time_slots = array();
+        $events = $team_busy;
+        dump($team_busy);
+        $count = count($events)-1;
+        // die();
+        $i = 0;
+        foreach ($events as $event) {
             if ($i < $count) {
-                  $free_time = $team_busy_slots[$i+1]['start'] - $event['end'];
-                  $free_time_slots[] = array(
-                      'start' => date("F j, Y, g:i a", $event['end']),
-                      'end' => date("F j, Y, g:i a", $team_busy_slots[$i+1]['start']),
-                      'minutes' => $free_time / 60
-                  );
-                  $i++;
+                $free_time = $events[$i+1]['start'] - $event['end'];
+                $free_time_slots[] = array(
+                    'start' => date("c", $event['end']),
+                    'end' => date("c", $events[$i+1]['start']
+                  ),
+                    'minutes' => $free_time / 60
+                );
+                $i++;
             }
         }
 
+        dump($free_time_slots);
+        die();
         return new JsonResponse($free_time_slots);
     }
 }

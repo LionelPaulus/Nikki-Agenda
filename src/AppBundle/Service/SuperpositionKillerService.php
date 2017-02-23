@@ -79,6 +79,9 @@ class SuperpositionKillerService
             // echo "<hr>";
         }
 
+        // dump(array_values($array));
+        // die();
+
         return array_values($array);
     }
 }

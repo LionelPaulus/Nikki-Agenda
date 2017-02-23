@@ -26,3 +26,7 @@ services:
 
     app.service.superpositionkiller:
         class: AppBundle\Service\SuperpositionKillerService
+
+    app.service.accesstoken:
+        class: AppBundle\Service\AccessTokenService
+        arguments: ['@service_container', '@doctrine.orm.entity_manager' ]
