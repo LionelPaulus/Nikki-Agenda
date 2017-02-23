@@ -2,6 +2,7 @@
    v2.0 | 20110126
    License: none (public domain)
 */
+@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600,700");
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -42,3 +43,633 @@ blockquote, q {
 table {
   border-collapse: collapse;
   border-spacing: 0; }
+
+.BackLighter {
+  background-color: #D0021B;
+  border: 2px solid #680101; }
+
+.BackDarker {
+  background-color: #680101; }
+
+.Border {
+  border: 2px solid #680101; }
+
+.FontLighter {
+  color: #D0021B; }
+
+.FontDarker {
+  color: #680101; }
+
+@font-face {
+  src: url(../fonts/Avenir-Heavy.ttf);
+  font-family: "Avenir-heavy"; }
+
+@font-face {
+  src: url(../fonts/Avenir-Light.ttf);
+  font-family: "Avenir-light"; }
+
+@font-face {
+  src: url(../fonts/Avenir-Medium.ttf);
+  font-family: "Avenir-medium"; }
+
+.Popup {
+  overflow: hidden;
+  max-height: 0%;
+  width: 0px;
+  background-color: #fff;
+  border: 2px solid #680101;
+  max-height: 100%;
+  width: 790px;
+  z-index: 10;
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translateX(-50%) translateY(-50%); }
+  .Popup::before {
+    content: url("../img/skin/pin.svg");
+    display: block;
+    width: 15px;
+    position: absolute; }
+  .Popup-title {
+    font-size: 26px;
+    color: #3D3D3D;
+    font-family: "Raleway", sans-serif;
+    margin: 20px 50px; }
+  .Popup-info {
+    position: absolute;
+    right: 30px;
+    top: 30px;
+    text-align: right;
+    font-family: "Raleway";
+    font-size: 19px;
+    text-transform: uppercase; }
+    .Popup-info-more {
+      font-size: 12px; }
+  .Popup--invite-container {
+    width: 80%;
+    margin: 50px auto; }
+  .Popup--invite-title {
+    font-family: "Avenir-medium";
+    font-size: 20px;
+    position: relative;
+    padding-bottom: 10px; }
+    .Popup--invite-title::after {
+      width: 25%;
+      height: 10px;
+      border-bottom: 1px solid #969696;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0; }
+  .Popup--invite-date {
+    color: #2bb363;
+    font-family: "Avenir-medium";
+    font-size: 20px;
+    margin-top: 30px;
+    margin-right: 50px;
+    display: inline-block; }
+  .Popup--invite-availability {
+    display: inline-block; }
+    .Popup--invite-availability div {
+      display: inline-block;
+      margin-right: 10px; }
+    .Popup--invite-availability input[type=radio] {
+      position: absolute;
+      visibility: hidden; }
+    .Popup--invite-availability label {
+      font-family: "Avenir-light";
+      font-size: 15px;
+      width: 135px;
+      height: 30px;
+      border: 1px solid #969696;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 5px;
+      display: block;
+      position: relative;
+      cursor: pointer;
+      transition: .2s ease; }
+    .Popup--invite-availability input#available[type=radio]:checked ~ label {
+      background-color: #4285f4;
+      color: #fff; }
+    .Popup--invite-availability input#occupied[type=radio]:checked ~ label {
+      background-color: #d0011a;
+      color: #fff; }
+  .Popup--invite-members {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap; }
+    .Popup--invite-members-title {
+      width: 100%;
+      font-family: "Avenir-light";
+      font-size: 20px;
+      position: relative;
+      padding-bottom: 10px;
+      margin-bottom: 20px; }
+      .Popup--invite-members-title::after {
+        width: 25%;
+        height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0; }
+    .Popup--invite-members-subtitle {
+      width: 25%;
+      font-size: 19px;
+      font-family: "Avenir-medium";
+      color: #3d3d3d; }
+    .Popup--invite-members-list {
+      width: 74%; }
+      .Popup--invite-members-list div {
+        margin-bottom: 15px; }
+      .Popup--invite-members-list-name {
+        font-family: "Avenir-light";
+        font-size: 20px; }
+        .Popup--invite-members-list-name--coming {
+          color: #ffbc4d; }
+      .Popup--invite-members-list-email {
+        font-family: "Avenir-light";
+        font-size: 15px;
+        margin-left: 10px; }
+      .Popup--invite-members-list-availability {
+        float: right; }
+        .Popup--invite-members-list-availability img {
+          width: 18px;
+          vertical-align: middle; }
+  .Popup--team-container {
+    width: 80%;
+    margin: 50px auto; }
+  .Popup--team-members, .Popup--team-create {
+    margin-top: 50px;
+    font-family: "Avenir-light";
+    font-size: 20px;
+    display: flex; }
+    .Popup--team-members-title, .Popup--team-create-title {
+      position: relative;
+      width: 25%;
+      padding-bottom: 10px;
+      align-self: center; }
+      .Popup--team-members-title::after, .Popup--team-create-title::after {
+        width: 100%;
+        height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0; }
+    .Popup--team-members input, .Popup--team-members select, .Popup--team-create input, .Popup--team-create select {
+      border: none;
+      outline: none;
+      margin-left: 20px;
+      padding: 5px 10px;
+      font-family: "Avenir-light";
+      font-size: 25px;
+      background-color: #F3F3F3; }
+  .Popup--event-container {
+    width: 80%;
+    margin: 50px auto; }
+  .Popup--event-title {
+    position: relative;
+    padding-bottom: 10px;
+    font-family: "Avenir-medium";
+    font-size: 20px; }
+    .Popup--event-title::after {
+      width: 25%;
+      height: 10px;
+      border-bottom: 1px solid #969696;
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: 0; }
+    .Popup--event-title input {
+      width: 100%;
+      border: none;
+      font-family: "Avenir-medium";
+      font-size: 20px; }
+    .Popup--event-title input:focus {
+      outline: none; }
+  .Popup--event-subtitle {
+    text-transform: uppercase;
+    margin-top: 20px;
+    font-family: "Avenir-medium";
+    font-size: 12px; }
+  .Popup--event-date {
+    margin-top: 30px;
+    font-size: 20px;
+    font-family: "Avenir-light"; }
+    .Popup--event-date input {
+      font-family: "Avenir-light";
+      font-size: 25px;
+      background-color: #F3F3F3;
+      padding: 5px 10px;
+      border: none;
+      outline: none; }
+    .Popup--event-date span {
+      margin: 0px 10px; }
+  .Popup--event-time {
+    margin-top: 50px;
+    font-family: "Avenir-light";
+    font-size: 20px;
+    display: flex; }
+    .Popup--event-time-title {
+      width: 25%;
+      position: relative;
+      padding-bottom: 10px; }
+      .Popup--event-time-title::after {
+        width: 100%;
+        height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0; }
+    .Popup--event-time input {
+      margin-left: 20px; }
+    .Popup--event-time output {
+      margin-left: 20px;
+      font-family: "Avenir-light";
+      font-size: 25px;
+      background-color: #F3F3F3;
+      color: #a6a6a6;
+      padding: 5px 10px; }
+  .Popup--event-place, .Popup--event-team {
+    margin-top: 50px;
+    font-family: "Avenir-light";
+    font-size: 20px;
+    display: flex; }
+    .Popup--event-place-title, .Popup--event-team-title {
+      position: relative;
+      width: 25%;
+      padding-bottom: 10px;
+      align-self: center; }
+      .Popup--event-place-title::after, .Popup--event-team-title::after {
+        width: 100%;
+        height: 10px;
+        border-bottom: 1px solid #969696;
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: 0; }
+    .Popup--event-place input, .Popup--event-place select, .Popup--event-team input, .Popup--event-team select {
+      border: none;
+      outline: none;
+      margin-left: 20px;
+      padding: 5px 10px;
+      font-family: "Avenir-light";
+      font-size: 25px;
+      background-color: #F3F3F3; }
+  .Popup--event-tags {
+    margin-top: 20px; }
+    .Popup--event-tags li {
+      display: inline-block;
+      padding: 5px 40px;
+      color: #fff;
+      font-family: "Avenir-medium";
+      font-size: 14px;
+      margin-right: 20px; }
+    .Popup--event-tags li:nth-child(1) {
+      background-color: #BE6575; }
+    .Popup--event-tags li:nth-child(2) {
+      background-color: #6FA96F; }
+    .Popup--event-tags li:nth-child(3) {
+      background-color: #A061D6; }
+  .Popup--event-choose {
+    margin-top: 50px;
+    max-height: 150px;
+    overflow-y: scroll; }
+    .Popup--event-choose li {
+      width: 100%;
+      margin-bottom: 20px; }
+    .Popup--event-choose div {
+      display: inline-block; }
+    .Popup--event-choose-title {
+      width: 50%;
+      font-family: "Avenir-light";
+      font-size: 18px; }
+    .Popup--event-choose input[type=radio] {
+      position: absolute;
+      visibility: hidden; }
+    .Popup--event-choose label {
+      font-family: "Avenir-light";
+      font-size: 15px;
+      width: 135px;
+      height: 30px;
+      border: 1px solid #969696;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 5px;
+      display: block;
+      position: relative;
+      cursor: pointer;
+      transition: .2s ease; }
+    .Popup--event-choose input[type=radio]:checked ~ label {
+      background-color: #4285f4;
+      color: #fff; }
+  .Popup--validated {
+    background-image: url(../img/skin/maneki.png);
+    background-repeat: no-repeat;
+    background-position: 50%; }
+    .Popup--validated-title {
+      margin-top: 95px;
+      text-align: center;
+      font-family: "Avenir-light";
+      font-size: 45px;
+      color: #680202; }
+    .Popup--validated-text {
+      text-align: center;
+      width: 80%;
+      margin: 130px auto 0;
+      font-size: 20px;
+      font-family: "Avenir-light"; }
+    .Popup--validated-footer {
+      width: 80%;
+      margin: 180px auto 65px;
+      text-align: center;
+      font-size: 15px;
+      color: #b5b5b5;
+      text-transform: uppercase;
+      font-family: "Avenir-medium"; }
+      .Popup--validated-footer a {
+        text-decoration: none;
+        text-transform: uppercase;
+        border: none;
+        background-color: #D0011A;
+        color: #fff;
+        font-family: "Avenir-heavy";
+        padding: 10px 20px;
+        font-size: 15px;
+        margin: 0 15px; }
+  .Popup-submit {
+    width: 145px;
+    height: 40px;
+    background-color: #2bb364;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    text-align: center;
+    font-family: "Avenir-medium";
+    font-size: 14px;
+    float: right;
+    margin-right: 30px;
+    margin-bottom: 30px; }
+
+.Menu {
+  display: flex;
+  flex-direction: column;
+  align-items: center; }
+  .Menu-list {
+    width: 90%;
+    text-align: center; }
+    .Menu-list li {
+      display: inline-block;
+      width: auto;
+      margin: 0 20px 0 20px; }
+    .Menu-list img {
+      width: 200px;
+      margin-bottom: -6px; }
+  .Menu-options {
+    width: 12%;
+    align-self: flex-end; }
+    .Menu-options-colors li {
+      display: inline-block;
+      margin: 0 3px 0 3px; }
+    .Menu-options-colors div {
+      border-radius: 20px;
+      width: 17px;
+      height: 17px;
+      border: 1px solid #979797; }
+    .Menu-options-colors-red {
+      background-color: #D0021B; }
+    .Menu-options-colors-blue {
+      background-color: #4990E2; }
+    .Menu-options-colors-green {
+      background-color: #64A41A; }
+    .Menu-options-colors-yellow {
+      background-color: #F6A623; }
+
+.Creation {
+  margin-top: 20px;
+  display: flex;
+  padding: 30px; }
+  .Creation input {
+    width: 70%;
+    margin-left: 20px;
+    border-radius: 4px;
+    border: 1px solid #A2CDE0;
+    font-family: "Raleway", sans-serif, sans-serif;
+    font-size: 1.2rem;
+    color: #3D3D3D;
+    padding-left: 20px; }
+  .Creation-button {
+    border-radius: 4px;
+    margin-left: -15%;
+    border: 1px solid #A2CDE0;
+    cursor: pointer;
+    display: flex;
+    width: 19%;
+    align-items: center; }
+    .Creation-button img {
+      width: 15%;
+      padding: 5px;
+      margin-left: 17%; }
+    .Creation-button h6 {
+      font-family: "Raleway", sans-serif, sans-serif;
+      font-size: 1.5rem;
+      color: #FEFEFE;
+      margin-left: 2%; }
+
+.Container {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between; }
+
+.SideBar {
+  width: 23%;
+  margin-top: 7%; }
+  .SideBar-title {
+    text-transform: uppercase;
+    font-family: "Avenir-heavy", sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: #3D3D3D;
+    text-align: center;
+    background-color: #FEFEFE;
+    padding: 10px 0 10px 0; }
+  .SideBar-content {
+    margin-top: 4%;
+    height: 30rem; }
+    .SideBar-content li {
+      display: flex;
+      justify-content: space-between;
+      align-items: center; }
+      .SideBar-content li div {
+        border: 2px solid #FEFEFE;
+        width: 100%;
+        margin-top: 2%; }
+    .SideBar-content h4 {
+      text-transform: uppercase;
+      font-family: "Avenir-medium", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 4px;
+      color: #FEFEFE;
+      padding: 10px 0 10px 20px; }
+    .SideBar-content img[alt*="Add"] {
+      width: 5%;
+      height: 5%;
+      margin-right: 10%; }
+    .SideBar-content p {
+      font-family: "Avenir-medium", sans-serif;
+      font-size: 1rem;
+      letter-spacing: 1px;
+      color: #FEFEFE;
+      padding: 25px 0 25px 20px; }
+    .SideBar-content img[alt*="See"] {
+      width: 3%;
+      height: 3%;
+      margin-right: 10%; }
+  .SideBar-footer h3 {
+    text-transform: uppercase;
+    font-family: "Avenir-heavy", sans-serif;
+    font-size: 1.1rem;
+    letter-spacing: 4px;
+    color: #FEFEFE;
+    text-align: center;
+    padding: 10px 0 10px 0; }
+
+.Upcoming {
+  width: 77%;
+  margin-left: 2%;
+  margin-top: 3%; }
+  .Upcoming-header {
+    display: flex; }
+    .Upcoming-header h2 {
+      font-family: "Avenir-heavy", sans-serif;
+      font-size: 3rem;
+      margin-left: 4%; }
+    .Upcoming-header h4 {
+      font-family: "Avenir-light", sans-serif;
+      font-size: 1.3rem;
+      margin-left: 20%; }
+  .Upcoming-content {
+    margin-top: 3%; }
+    .Upcoming-content h5 {
+      font-family: "Avenir-light", sans-serif;
+      font-size: 1.3rem;
+      margin-left: 7%;
+      color: #000000; }
+    .Upcoming-content-line {
+      border: 1px solid #BAB9B9;
+      margin-left: 7%;
+      margin-top: 0.5%;
+      width: 20%; }
+
+.Card {
+  width: 32%;
+  margin-top: 2%;
+  margin-left: 0.5%;
+  display: inline-block; }
+  .Card-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .Card-header div {
+      width: 10px;
+      height: 50px; }
+    .Card-header h6 {
+      font-family: "Raleway", sans-serif, sans-serif;
+      text-transform: uppercase;
+      font-size: 0.7rem; }
+    .Card-header h5 {
+      font-family: 'Avenir-light', sans-serif;
+      font-size: 1.1rem;
+      padding-right: 7px; }
+  .Card-content {
+    padding: 7% 7% 13% 7%; }
+    .Card-content h3 {
+      font-family: 'Avenir-medium', sans-serif;
+      font-size: 1.5rem;
+      color: #3D3D3D; }
+    .Card-content p {
+      font-family: 'Avenir-light', sans-serif;
+      font-size: 1rem;
+      color: #3D3D3D; }
+  .Card-footer {
+    border: none !important;
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+    .Card-footer a {
+      color: #FEFEFE;
+      font-family: 'Avenir-light', sans-serif;
+      font-size: 1rem;
+      padding: 3%; }
+    .Card-footer img {
+      padding: 3%; }
+
+.Footer {
+  margin-top: 5%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; }
+  .Footer-about {
+    width: 25%;
+    padding: 30px; }
+  .Footer-faq {
+    width: 25%;
+    padding: 30px; }
+  .Footer-legal {
+    width: 25%;
+    padding: 30px; }
+  .Footer h6 {
+    font-family: 'Avenir-black', sans-serif;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    padding: 2%;
+    text-align: center;
+    letter-spacing: 3.5px;
+    background-color: #FEFEFE; }
+  .Footer a {
+    font-family: 'Avenir-medium', sans-serif;
+    font-size: 0.8rem;
+    color: #FEFEFE; }
+  .Footer li {
+    padding: 2px; }
+  .Footer ul {
+    margin-top: 15px; }
+
+.Credits {
+  font-family: 'Avenir-heavy', sans-serif;
+  font-size: 0.9rem;
+  text-align: center;
+  padding: 10px;
+  margin-bottom: 3%; }
+
+.loading {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 99; }
+  .loading img {
+    width: 300px; }
+
+.background-screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #680101;
+  opacity: 0.5;
+  display: none; }
+
+body {
+  width: 1200px;
+  margin: 50px auto; }

@@ -16,7 +16,7 @@ class GoogleOAuthController extends Controller
       \Google_Service_People::CONTACTS_READONLY
     ];
     /**
-     * @Route("/oauth/google/auth")
+     * @Route("/oauth/google/auth", name="googleAuth")
      */
     public function getAuthenticationCodeAction()
     {

@@ -1,0 +1,19 @@
+{
+	"title"  : "Please accept, pretty plz",
+	"date"   : "24 avril tmtc - 18h to 19h",
+	"team"	 : "Seillans",
+	"place"  : "Same",
+	"members": [
+		{
+		"name"    : "Lionel P",
+		"email"   : "johndoe@gmail.com",
+		"presence": true
+		},
+		{
+		"name"    : "Claire Z.",
+		"email"   : "janedoe@gmail.com",
+		"presence": false
+		}
+	],
+	"id": 1
+}
