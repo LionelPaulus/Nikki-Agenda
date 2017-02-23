@@ -78,7 +78,7 @@ class APIController extends Controller
     public function getSlots(Request $request)
     {
         // Check if POST has data
-        if (isset($_POST)) {
+        if (empty($_POST)) {
             $this->response->code = "404";
             $this->response->message = "No POST content received";
             return new JsonResponse($this->response);

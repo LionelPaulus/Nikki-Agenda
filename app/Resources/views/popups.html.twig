@@ -31,31 +31,31 @@
   <h3 class="Popup-title">Meeting creation</h3>
   <div class="Popup-info">Nikki Agenda</div>
 
-  <form action="" method="" id="formCreation">    
+  <form action="/api/getSlots" method="POST" id="formCreation">    
     <div class="Popup--event-container">
       <div class="Popup--event-title">
-        <input autofocus required type="text" placeholder="Enter here a name for your event" name="event_name">
+        <input autofocus required type="text" placeholder="Enter here a name for your event" name="eventTitle">
       </div>
       <div class="Popup--event-subtitle">Pick the time slot that suits you more</div>
       <div class="Popup--event-date">
-        <input required type="date" name="event_dateFrom">
+        <input required type="date" name="fromDate">
         <span>to</span>
-        <input required type="date" name="event_dateTo">
+        <input required type="date" name="toDate">
       </div>
       <div class="Popup--event-time">
         <div class="Popup--event-time-title">Duration (min)</div>
-        <input required type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="60" name="event_duration">
+        <input required type="range" min="15" max="180" step="15" oninput="outputUpdate(value)" value="60" name="duration">
         <output id="duration">60</output>
       </div>
       <div class="Popup--event-place">
         <div class="Popup--event-place-title">Place</div> 
-        <input required type="text" placeholder="Room 12" name="event_place">
+        <input required type="text" placeholder="Room 12" name="location">
       </div>
       <div class="Popup--event-team">
         <div class="Popup--event-team-title">Team</div>
-        <select required name="event_team">
-          <option value="team_one" selected>Team 1</option>
-          <option value="team_two">Team 2</option>
+        <select required name="teamId">
+          <option value="56" selected>Team 1</option>
+          <option value="25">Team 2</option>
         </select>
       </div>
     </div>

@@ -75,7 +75,7 @@ function formPostCreation(){
             'title'     : $('#homeInput input[name=homeInput_title]').val()
         };
         console.log(formData);
-        $('.Popup--event input[name=event_name]').val(formData.title);
+        $('.Popup--event input[name=eventTitle]').val(formData.title);
         $('body').css('overflow','hidden');
         $('.Popup--event').addClass('Popup--open').fadeIn();
         $('.background-screen').fadeIn();
@@ -90,21 +90,34 @@ function formCreation(){
         var $this = $(this); // L'objet jQuery du formulaire
         console.log($this);
 
+        // Converting dates to UNIX timestamp (*1000 to convert back)
+        var fromDateUnix = moment($('#formCreation input[name=fromDate]').val()).unix();
+        var toDateUnix   = moment($('#formCreation input[name=toDate]').val()).unix();
+        var fromDate     = moment(fromDateUnix*1000).format("Do MMM, YY");
+        var toDate       = moment(toDateUnix*1000).format("Do MMM, YY");
+        //var revert = moment(fromDate*1000).format("dddd, MMMM Do YYYY");
+
         // Je récupère les valeurs
         var formData = {
-            'title'     : $('#formCreation input[name=event_name]').val(),
-            'from'      : $('#formCreation input[name=event_dateFrom]').val(),
-            'to'        : $('#formCreation input[name=event_dateTo]').val(),
-            'duration'  : $('#formCreation input[name=event_duration]').val(),
-            'place'     : $('#formCreation input[name=event_place]').val(),
-            'team'      : $('#formCreation select[name=event_team]').val()
+            'eventTitle'  : $('#formCreation input[name=eventTitle]').val(),
+            'location'    : $('#formCreation input[name=location]').val(),
+            'teamId'      : $('#formCreation select[name=teamId]').val(),
+            'fromDate'    : fromDateUnix,
+            'toDate'      : toDateUnix,
+            'duration'    : $('#formCreation input[name=duration]').val()
         };
-        console.log(formData);
+        var formDataTemp = {
+            'teamId'  : $('#formCreation select[name=teamId]').val(),
+            'fromDate'    : fromDateUnix,
+            'toDate'      : toDateUnix,
+            'duration'    : $('#formCreation input[name=duration]').val()
+        };
+        //console.log(formData);
 
         $.ajax({
           type: $this.attr('method'),
           url: $this.attr('action'),
-          data: formData,
+          data: formDataTemp,
           dataType: 'json',
           beforeSend:function(){
             // this is where we append a loading image
@@ -115,19 +128,20 @@ function formCreation(){
           success:function(data){
             // successful request; do something with the data
             console.log('success');
-          },
-          error:function(){
-            // failed request; give feedback to user
+
+            var result = data;
+            console.log(result.response.events);
+
             setTimeout(function(){
                 $('.loading').fadeOut();
                 $('#formCreation').remove();
                 $('.Popup--event').append(
                     "<form action='' method='' id='formValidation'><div class='Popup--event-container'>"
-                    +"<div class='Popup--event-title'>"+formData.title+"</div>"
+                    +"<div class='Popup--event-title'>"+formData.eventTitle+"</div>"
                     +"<div class='Popup--event-subtitle'>Pick the time slot that suits you more</div>"
                     +"<ul class='Popup--event-tags'>"
-                    +"<li>"+formData.from+" to "+formData.to+"</li>"
-                    +"<li>"+formData.place+"</li>"
+                    +"<li>"+fromDate+" to "+toDate+"</li>"
+                    +"<li>"+formData.location+"</li>"
                     +"<li>"+formData.duration+" minutes</li>"
                     +"</ul></div><input type='submit' name='formValidation_submit' value='SUBMIT' class='Popup-submit'></form>"
                 );
@@ -143,7 +157,9 @@ function formCreation(){
                 $this.attr('id','formValidation');
                 formValidation();
             }, 1000);
-
+          },
+          error:function(){
+            // failed request; give feedback to user
             console.log('error');
           }
         });    
