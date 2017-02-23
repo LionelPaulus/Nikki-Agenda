@@ -175,39 +175,4 @@ class AppController extends Controller
             ));
         }
     }
-
-    /**
-     * @Route("/app/getMembersSuggestions.json", name="getMembersSuggestions")
-     */
-    public function getMembersSuggestions(Request $request)
-    {
-        $session = $request->getSession();
-
-        if (empty($session->get('userGoogleAuth'))) {
-            // Check if user is logged, if not redirect to homepage
-            return $this->redirectToRoute('homepage');
-        } else {
-            // User is logged
-
-            $contactsSuggestions = [];
-
-            // Get all registered users
-            $em = $this->getDoctrine()->getEntityManager();
-            $users = $em->getRepository('AppBundle:User')->findAll();
-            foreach ($users as $user) {
-                array_push($contactsSuggestions, $user->getEmail());
-            }
-
-            // Get user Google Contacts emails
-            $googleContactsService = $this->get('app.service.google_contacts_api');
-            $googleContacts = $googleContactsService->getAllEmails($session->get('userGoogleAuth'));
-            if (count($googleContacts > 0)) {
-                foreach ($googleContacts as $googleContact) {
-                    array_push($contactsSuggestions, $googleContact);
-                }
-            }
-
-            return new JsonResponse($contactsSuggestions);
-        }
-    }
 }
