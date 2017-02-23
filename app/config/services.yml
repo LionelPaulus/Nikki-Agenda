@@ -23,3 +23,6 @@ services:
     app.service.disposteams:
         class: AppBundle\Service\DisposTeamService
         arguments: ['@service_container', '@doctrine.orm.entity_manager' ]
+
+    app.service.superpositionkiller:
+        class: AppBundle\Service\SuperpositionKillerService
