@@ -139,8 +139,8 @@ class AppController extends Controller
                     }
                 }
 
-                // Redirect to the team
-                return $this->redirectToRoute('teamShow', array('id' => $teamId));
+                // Redirect to the app
+                return $this->redirectToRoute('app');
             }
 
             $formTwig = $form->createView();

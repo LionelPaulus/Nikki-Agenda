@@ -10,12 +10,10 @@
             </li>
             <li><div></div></li>
             {% for team in user_teams %}
-            <a href="/app/{{team.id}}">
-            <li>
-                <p>{{team.name}}</p>
-                <img src="{{ asset('images/arrow.png') }}" alt="See">
-            </li>
-            </a>
+                <li>
+                    <p>{{team.name}}</p>
+                    <img src="{{ asset('images/arrow.png') }}" alt="See">
+                </li>
             {% endfor %}
         </ul>
         <div class="SideBar-footer">
