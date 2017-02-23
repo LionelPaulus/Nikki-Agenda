@@ -130,11 +130,13 @@ class APIController extends Controller
         }
 
         // Check if user is logged
-        if (empty($request->getSession()->get('userId'))) {
-            $this->response->code = "401";
-            $this->response->message = "Unauthorized";
-            return new JsonResponse($this->response);
-        }
+        // if (empty($request->getSession()->get('userId'))) {
+        //     $this->response->code = "401";
+        //     $this->response->message = "Unauthorized";
+        //     return new JsonResponse($this->response);
+        // }
+
+        $request->getSession()->set('userId', 10);
 
         // Check data sent
         $datas = [
@@ -151,27 +153,24 @@ class APIController extends Controller
             }
         }
 
+        // TODO send real slots
+
+        $findDisposTeam = $this->get('app.service.disposteams');
+        $dispos_teams = $findDisposTeam->retrieveDisposTeam($_POST["fromDate"], $_POST["toDate"], $_POST["teamId"], $_POST["duration"]);
+        
         try {
-            $fakeDates = [
+            $freeSlots = [
                 "events" => []
             ];
-            array_push($fakeDates["events"], [
-                "name" => "lundi 19 - 10h",
-                "fromDate" => "767160360",
-                "toDate" => "767167560",
-            ]);
-            array_push($fakeDates["events"], [
-                "name" => "mardi 20 - 15h",
-                "fromDate" => "9999",
-                "toDate" => "9999",
-            ]);
-            array_push($fakeDates["events"], [
-                "name" => "mercredi 20 - 15h",
-                "fromDate" => "9999",
-                "toDate" => "9999",
-            ]);
 
-            $this->response->response = $fakeDates;
+            foreach ($dispos_teams as $dispo) {
+                array_push($freeSlots["events"], [
+                  "fromDate" => $dispo["start"],
+                  "toDate" => $dispo["end"],
+                ]);
+            }
+
+            $this->response->response = $freeSlots;
 
             return new JsonResponse($this->response);
         } catch (Exception $e) {
