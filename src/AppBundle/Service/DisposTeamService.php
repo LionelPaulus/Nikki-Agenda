@@ -38,8 +38,6 @@ class DisposTeamService
         $interval = $start_time->diff($end_time);
         $interval = $interval->days;
 
-        $morning_clamping = array();
-
         for ($i=0; $i < $interval + 1; $i++) {
             $day = '+'.$i.' day';
             $clamped_day = new \DateTime($start_time->format('Y-m-d').$day);
@@ -47,6 +45,11 @@ class DisposTeamService
             [
               "start" => date_timestamp_get(date_time_set($clamped_day, 00, 00, 00)),
               "end" => date_timestamp_get(date_time_set($clamped_day, 10, 00, 00))
+            ]);
+            array_push($team_busy_slots,
+            [
+              "start" => date_timestamp_get(date_time_set($clamped_day, 20, 30, 00)),
+              "end" => date_timestamp_get(date_time_set($clamped_day, 23, 59, 59))
             ]);
         }
 
@@ -86,17 +89,18 @@ class DisposTeamService
                 array_push($team_dispos,
                     [
                       "start" => $range["start"],
-                      "end" => $range["start"]+$duration
+                      "end" => $range["start"]+$duration*60
                     ]
                 );
             }
         }
 
-        // foreach ($team_dispos as $dispo) {
-        //     dump(date('c', $dispo["start"]));
-        //     dump(date('c', $dispo["end"]));
-        // }
+        foreach ($team_dispos as $dispo) {
+            dump(date('c', $dispo["start"]));
+            dump(date('c', $dispo["end"]));
+        }
 
+        dump($team_dispos);
         return new JsonResponse($team_dispos);
     }
 }
